@@ -9,11 +9,11 @@ import java.util.*;
  * @author jhkopone
  */
 public class Opintokokonaisuus {
-    private String nimi;
+    private Taso nimi;
     private Map<String, Kurssi> kurssit;
 
     
-    public Opintokokonaisuus (String nimi) {
+    public Opintokokonaisuus (Taso nimi) {
         this.nimi = nimi;
         this.kurssit = new HashMap<String, Kurssi>();
     }
@@ -58,7 +58,7 @@ public class Opintokokonaisuus {
         return yleisarvosana / this.kurssit.size();
     }
     
-    public String getNimi() {
+    public Taso getNimi() {
         return this.nimi;
     }
 }
