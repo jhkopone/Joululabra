@@ -18,8 +18,20 @@ public class Opintokokonaisuus {
         this.kurssit = new HashMap<String, Kurssi>();
     }
     
-    public void lisaaKurssi (Kurssi kurssi) {
-        this.kurssit.put(kurssi.getKurssikoodi(), kurssi);
+    public boolean lisaaKurssi (Kurssi kurssi) {
+        if (!this.kurssit.containsKey(kurssi.getKurssikoodi())) {
+            this.kurssit.put(kurssi.getKurssikoodi(), kurssi);
+            return true;
+        }
+        return false;
+    }
+    
+    public boolean poistaKurssi(Kurssi kurssi) {
+        if (this.kurssit.containsKey(kurssi.getKurssikoodi())) {
+            this.kurssit.remove(kurssi.getKurssikoodi());
+            return true;
+        }
+        return false;
     }
     
     public int opintopisteetYhteensa() {
