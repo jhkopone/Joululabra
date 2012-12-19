@@ -4,3 +4,9 @@ Tuntikirjanpito
 GitHub reposition luominen 		1h
 Aihemäärittelyn kirjoittaminen	0.5h
 Tuntikirjanpidon aloittaminen	0.5h
+
+18.12.2012
+Määrittelyvaiheen luokkakaavion laatiminen 0.5h
+Ohjelmoinnin aloittaminen 2.0h
+
+
