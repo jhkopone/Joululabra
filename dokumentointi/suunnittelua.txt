@@ -6,37 +6,69 @@ Tiedostonkäsittelijä tyypin oliolla voidaan sekä lukea, että kirjoittaa tied
 kun uusi käyttäjä luodaan, kirjataan käyttäjätunnus ja salasana tiedostoon, jonka
 jokainen rivi sisältää tiedot muodossa tunnus:salasana. 
 
+TIEDOSTONKÄSITTELIJÄ
+
 Tiedostonkäsittelijä-luokkaan
-- 
-voisi luoda toiminnallisuuden, missä tiedoston sisältö voidaan palauttaa Map-tyyppisenä.
+- public void tallenna(String tiedosto, String teksti)
+- public void tallenna(String tiedosto, Map<String, String>)
+- public ArrayList<String> lue(String tiedosto)
+- public Map<String, String> lue(String tiedosto) 
+
 Tällöin kirjautumisessa tarkistaminen olisi nopeata. Ongelmana on se, että ainoastaan 
 tunnukset sisältävä tiedosto on sellainen, että sillä on ainoastaan kaksi kohdetta 
 rivillä. Tähän tietysti voisi varautua esim. jonkinlaisella poikkeusten 
 käsittelymetodilla.
+
+KIRJAUTUMINEN/TUNNUSTEN KÄSITTELEMINEN
 
 Luodaan erillinen kirjautuminen-luokka. Luokasta luodut oliot käyttävät tiedostoa, 
 johon tunnukset on tallennettu.
 Tiedostonkäsittelijä-luokka tarjoaa tiedoston tiedot Map-rakenteeseen tallennettuna,
 mikä mahdollistaa 
  
-- parametrillinen konstruktori, joka saa tiedoston nimen parametrina.
-- public boolean lataa() joka lataa kontruktorin parametrina saadun tiedoston. Ehkä
-käyttää Tiedostonkäsittelijää???
+- public Kirjautuminen(String tiedosto)
+parametrillinen konstruktori, joka saa tiedoston nimen parametrina.
+- public boolean lataa() joka lataa kontruktorin parametrina saadun tiedoston. Käyttää 
+Tiedostonkäsittelijän metodia, public Map<String, String> lue(String tiedosto). 
 - tarkistaKirjautuminen(), joka käy käyttäjätunnukset sisältävän tietorakenteen läpi 
-ja hakee opiskelijan tiedot näkyviin jos oikea tunnus-salasana-yhdistelmä löytyy. 
-- luoUusiKayttajatunnus(). 
-- poistaKayttajatunnus().
+ja hakee opiskelijan tiedot näkyviin jos oikea tunnus-salasana-yhdistelmä löytyy.
+HUOM! Luoko kirjautuminen-olio uuden lataajan jolle antaa ao. opiskelijan tiedoston
+nimen parametrina. Lataaja huolehtii olioiden luomisesta ja datan sijoittamisesta 
+niihin? 
+- luoUusiKayttajatunnus(). Luo uuden käyttäjätunnuksen ja tallentaa sen 
+Tiedostonkäsittelijän avulla. 
+- poistaKayttajatunnus(). Poistaa käyttäjätunnuksen järjestelmästä.
   
 kirjautuminen voidaan luoda samalla kaavalla kuin ohjelmoinnin jatkokurssin tehtävässä
 35: Muistava sanakirja
 
+TEKSTIKÄYTTÖLIITTYMÄ
 
-on luotava tiedosto, joka sisältää tiedot käyttäjätunnuksista ja salasanoista.
-on luotava tiedosto, joka sisältää tiedot yksittäisen opiskelijan opinnoista.
+- Konstruktori, joka saa parametrina Scanner-olion ja OpintojenSeurantajarjestelma-luokan
+ilmentymän.
+Luokka sisältää metodeja, jotka kutsuvat OpintojenSeurantajarjestelma-luokan olion 
+metodeja. OpintojenSeurantajarjestelma toteuttaa toiminnallisuuden muiden luokkien
+avulla.
+
+TARVITTAVAT TIEDOSTOT
+
+- tunnukset, joka sisältää tiedot käyttäjätunnuksista ja salasanoista.
+- tiedosto, joka sisältää tiedot yksittäisen opiskelijan opinnoista.
 Tiedostoon tallennetaan yhdelle riville kunkin kurssin tiedot siinä järjestyksessä,
 missä ne annetaan Kurssi-luokan konstruktorille.
+
+Opintokokonaisuuksien muodostaminen ja erilaisten arvojen laskeminen tapahtuu
+vasta ohjelman suorituksen aikana.
+
+LATAAJA/TALLENTAJA
 
 Ehkä pitäisi luoda myös jonkinlainen lataaja/tallentaja -luokka, joka käyttää tiedoston-
 käsittelijää luodakseen tiedostoihin tallennettavasta datasta ohjelman suorituksen 
 aikaiset oliot. Luokasta luotaisiin uusi lataaja-olio ainoastaan jos kirjautuminen 
 onnistuu.
+
+KURSSI
+
+- public String tallennettavaMuoto(). Metodi palauttaa yksittäisen kurssin tilan
+muodossa, joka voidaan suoraan tallentaa kyseisen opiskelijan tiedostoon.(oliomuuttujat
+samassa järjestyksessä kuin konstruktorissa, ":"-merkillä erotettuna) 

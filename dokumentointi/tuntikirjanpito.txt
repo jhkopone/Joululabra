@@ -10,4 +10,4 @@ Määrittelyvaiheen luokkakaavion laatiminen 0.5h
 Ohjelmoinnin aloittaminen 3.0h
 
 29.12.2012
-suunnittelu 1.0h
+suunnittelu 1.5h
