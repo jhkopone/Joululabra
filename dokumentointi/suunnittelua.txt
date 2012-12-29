@@ -4,17 +4,39 @@ kirjautuminen
 samoin kuin ohjelmoinnin jatkokurssin tehtävässä 34: Tiedostonkäsittelijä.
 Tiedostonkäsittelijä tyypin oliolla voidaan sekä lukea, että kirjoittaa tiedostoon.
 kun uusi käyttäjä luodaan, kirjataan käyttäjätunnus ja salasana tiedostoon, jonka
-jokainen rivi sisältää tiedot muodossa tunnus:salasana. Tiedostonkäsittelijä-luokkaan.
+jokainen rivi sisältää tiedot muodossa tunnus:salasana. 
+
+Tiedostonkäsittelijä-luokkaan
+- 
+voisi luoda toiminnallisuuden, missä tiedoston sisältö voidaan palauttaa Map-tyyppisenä.
+Tällöin kirjautumisessa tarkistaminen olisi nopeata. Ongelmana on se, että ainoastaan 
+tunnukset sisältävä tiedosto on sellainen, että sillä on ainoastaan kaksi kohdetta 
+rivillä. Tähän tietysti voisi varautua esim. jonkinlaisella poikkeusten 
+käsittelymetodilla.
 
 Luodaan erillinen kirjautuminen-luokka. Luokasta luodut oliot käyttävät tiedostoa, 
-johon tunnukset on tallennettu. Luokalla on metodi tarkistaKirjautuminen(), joka
-käy läpi tiedoston rivit ja hakee opiskelijan tiedot näkyviin jos oikea tunnus-salasana
--yhdistelmä löytyy. Kirjautuminen-luokka voisi myös huolehtia uuden käyttäjätunnuksen
-luomisesta metodilla luoUusiKayttajatunnus().
+johon tunnukset on tallennettu.
+Tiedostonkäsittelijä-luokka tarjoaa tiedoston tiedot Map-rakenteeseen tallennettuna,
+mikä mahdollistaa 
+ 
+- parametrillinen konstruktori, joka saa tiedoston nimen parametrina.
+- public boolean lataa() joka lataa kontruktorin parametrina saadun tiedoston. Ehkä
+käyttää Tiedostonkäsittelijää???
+- tarkistaKirjautuminen(), joka käy käyttäjätunnukset sisältävän tietorakenteen läpi 
+ja hakee opiskelijan tiedot näkyviin jos oikea tunnus-salasana-yhdistelmä löytyy. 
+- luoUusiKayttajatunnus(). 
+- poistaKayttajatunnus().
   
 kirjautuminen voidaan luoda samalla kaavalla kuin ohjelmoinnin jatkokurssin tehtävässä
+35: Muistava sanakirja
+
 
 on luotava tiedosto, joka sisältää tiedot käyttäjätunnuksista ja salasanoista.
 on luotava tiedosto, joka sisältää tiedot yksittäisen opiskelijan opinnoista.
 Tiedostoon tallennetaan yhdelle riville kunkin kurssin tiedot siinä järjestyksessä,
 missä ne annetaan Kurssi-luokan konstruktorille.
+
+Ehkä pitäisi luoda myös jonkinlainen lataaja/tallentaja -luokka, joka käyttää tiedoston-
+käsittelijää luodakseen tiedostoihin tallennettavasta datasta ohjelman suorituksen 
+aikaiset oliot. Luokasta luotaisiin uusi lataaja-olio ainoastaan jos kirjautuminen 
+onnistuu.

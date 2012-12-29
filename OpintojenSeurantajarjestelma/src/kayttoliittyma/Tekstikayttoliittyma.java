@@ -8,6 +8,6 @@ package kayttoliittyma;
  *
  * @author jhkopone
  */
-public class Kayttoliittyma {
+public class Tekstikayttoliittyma {
     
 }
