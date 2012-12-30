@@ -38,7 +38,7 @@ public class Opintokokonaisuus {
         int opintopisteet = 0;
         
         for (String kurssi : this.kurssit.keySet()) {
-            opintopisteet += this.kurssit.get(kurssi).getOpintopisteet();
+            opintopisteet += Integer.parseInt(this.kurssit.get(kurssi).getOpintopisteet());
         }
         
         return opintopisteet;
@@ -52,7 +52,7 @@ public class Opintokokonaisuus {
         int yleisarvosana = 0;
         
         for (String kurssi : this.kurssit.keySet()) {
-            yleisarvosana = yleisarvosana + this.kurssit.get(kurssi).getArvosana();
+            yleisarvosana = yleisarvosana + Integer.parseInt(this.kurssit.get(kurssi).getArvosana());
         }
         
         return yleisarvosana / this.kurssit.size();

@@ -15,7 +15,7 @@ public class Tiedostonkasittelija {
         
     }
     
-    public ArrayList<String> lue() {
+    public ArrayList<String> lue(String tiedosto) {
         ArrayList<String> luettu = new ArrayList<String>();
         return luettu;
     }
