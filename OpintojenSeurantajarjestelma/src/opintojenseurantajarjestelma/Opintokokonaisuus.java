@@ -51,11 +51,12 @@ public class Opintokokonaisuus {
     public int yleisarvosana() {
         int yleisarvosana = 0;
         
+        
         for (String kurssi : this.kurssit.keySet()) {
-            yleisarvosana = yleisarvosana + Integer.parseInt(this.kurssit.get(kurssi).getArvosana());
+            yleisarvosana = yleisarvosana + (Integer.parseInt(this.kurssit.get(kurssi).getArvosana()) * Integer.parseInt(this.kurssit.get(kurssi).getOpintopisteet()));
         }
         
-        return yleisarvosana / this.kurssit.size();
+        return yleisarvosana / this.opintopisteetYhteensa();
     }
     
     public Taso getNimi() {

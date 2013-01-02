@@ -12,7 +12,7 @@ public class Kurssi {
     private String nimi;
     private String kurssikoodi;
     private String opintopisteet;
-    private String taso;
+    private Taso taso;
     private String erikoistumislinja;
     private String kuvaus;
     private String arvosana;
@@ -21,7 +21,7 @@ public class Kurssi {
     public Kurssi() {  
     }
     
-    public Kurssi (String nimi, String kurssikoodi, String opintopisteet, String taso, String erikoistumislinja, String kuvaus, String arvosana, String suoritusPvm) {
+    public Kurssi (String nimi, String kurssikoodi, String opintopisteet, Taso taso, String erikoistumislinja, String kuvaus, String arvosana, String suoritusPvm) {
         this.nimi = nimi;
         this.kurssikoodi = kurssikoodi;
         this.opintopisteet = opintopisteet;
@@ -46,7 +46,7 @@ public class Kurssi {
         this.opintopisteet = opintopisteet;
     }
     
-    public void setTaso(String taso) {
+    public void setTaso(Taso taso) {
         this.taso = taso;
     }
     
@@ -82,7 +82,7 @@ public class Kurssi {
         return opintopisteet;
     }
 
-    public String getTaso() {
+    public Taso getTaso() {
         return taso;
     }
 

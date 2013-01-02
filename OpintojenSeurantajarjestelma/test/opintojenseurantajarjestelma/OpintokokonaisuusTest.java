@@ -33,9 +33,9 @@ public class OpintokokonaisuusTest {
     @Before
     public void setUp() {
         opintokokonaisuus = new Opintokokonaisuus(Taso.PERUSOPINNOT);
-        kurssi1 = new Kurssi("testi1", "007", 5, "perusopinnot", "ei ole", "testikurssi1", 5);
-        kurssi2 = new Kurssi("testi2", "008", 4, "perusopinnot", "ei ole", "testikurssi2", 5);
-        kurssi3 = new Kurssi("testi3", "009", 3, "perusopinnot", "ei ole", "testikurssi3", 5);
+        kurssi1 = new Kurssi("testi1", "007","5", "perusopinnot", "ei ole", "testikurssi1", "5");
+        kurssi2 = new Kurssi("testi2", "008", "4", "perusopinnot", "ei ole", "testikurssi2", "5");
+        kurssi3 = new Kurssi("testi3", "009", "3", "perusopinnot", "ei ole", "testikurssi3", "5");
     }
     
     @After

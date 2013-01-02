@@ -94,8 +94,8 @@ public class Tekstikayttoliittyma {
         System.out.print("Syötä opintopistemäärä: ");
         String opintopisteet = lukija.nextLine();
         
-        System.out.print("Syötä kurssin taso: ");
-        String taso = lukija.nextLine();
+        System.out.println("Syötä kurssin taso: ");
+        String taso = this.kyseleKurssinTaso();
         
         System.out.print("Syötä erikoistumislinja: ");
         String erikoistumislinja = lukija.nextLine();
@@ -112,10 +112,32 @@ public class Tekstikayttoliittyma {
         this.jarjestelma.lisaaKurssi(nimi, kurssikoodi, opintopisteet, taso, erikoistumislinja, kuvaus, arvosana, suoritusPvm);
     }
     
+    public Taso kyseleKurssinTaso() {
+        
+        System.out.println("PERUSOPINNOT (1)");
+        System.out.println("AINEOPINNOT (2)"); 
+        System.out.println("SYVENTAVAT_OPINNOT (3)"); 
+        System.out.println("JATKO_OPINNOT (4)");
+        System.out.println("MUUT_OPINNOT (5)");
+        System.out.println("KIELIOPINNOT (6)");
+        System.out.println("TVT_OPINNOT (7)");
+        
+        System.out.println("Valitse kurssin taso: ");
+        Taso taso = lukija.nextLine();
+        
+        return taso;
+    }
+    
     public void tulostaKurssit() {
-        List<Kurssi> tulostettavat = this.jarjestelma.annaKurssit();
-        for (Kurssi kurssi : tulostettavat) {
-            System.out.print(kurssi);
+        Map<Taso, Opintokokonaisuus> tulostettavat = this.jarjestelma.getOpintokokonaisuudet();
+        
+        for (Taso taso : tulostettavat.keySet()) {
+            System.out.println(tulostettavat.get(taso).getNimi());
+            
+            for (Kurssi kurssi : tulostettavat.get(taso).getKurssit()) {
+                System.out.println(kurssi);
+            }
+            
             System.out.println();
         }
     }

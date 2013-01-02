@@ -9,5 +9,21 @@ package opintojenseurantajarjestelma;
  * @author jhkopone
  */
 public enum Taso {
-    PERUSOPINNOT, AINEOPINNOT, SYVENTAVAT_OPINNOT, JATKO_OPINNOT, MUUT_OPINNOT, KIELIOPINNOT, TVT_OPINNOT
+    PERUSOPINNOT (1), 
+    AINEOPINNOT (2), 
+    SYVENTAVAT_OPINNOT(3), 
+    JATKO_OPINNOT(4), 
+    MUUT_OPINNOT(5), 
+    KIELIOPINNOT(6), 
+    TVT_OPINNOT(7);
+    
+    private Integer taso;
+    
+    private Taso(Integer taso) {
+        this.taso = taso;
+    }
+    
+    public Integer getTaso() {
+        return this.taso;
+    }
 }
