@@ -14,3 +14,6 @@ suunnittelu 1.5h
 
 30.12.2012
 ohjelmointi 1.0h
+
+2.1.2012
+ohjelmointi 0.5h

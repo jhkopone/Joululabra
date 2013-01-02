@@ -23,6 +23,7 @@ public class Tekstikayttoliittyma {
         
         while (true) {
             tulostaValikko();
+            System.out.println();
             int komento = Integer.parseInt(lukija.nextLine());
             
             if (komento == 6) {
@@ -33,7 +34,11 @@ public class Tekstikayttoliittyma {
                 
             } else if (komento == 3) {
                 tulostaOpiskelija();
-            }        
+            } else if (komento == 4) {
+                lisaaKurssi();
+            } else if (komento == 5) {
+                tulostaKurssit();
+            }      
         }
         
         tulostaLopputeksti();
@@ -104,6 +109,14 @@ public class Tekstikayttoliittyma {
         System.out.print("Syötä kurssin suorituspäivämäärä (muodossa ppkkvv): ");
         String suoritusPvm = lukija.nextLine();
         
- 
+        this.jarjestelma.lisaaKurssi(nimi, kurssikoodi, opintopisteet, taso, erikoistumislinja, kuvaus, arvosana, suoritusPvm);
+    }
+    
+    public void tulostaKurssit() {
+        List<Kurssi> tulostettavat = this.jarjestelma.annaKurssit();
+        for (Kurssi kurssi : tulostettavat) {
+            System.out.print(kurssi);
+            System.out.println();
+        }
     }
 }

@@ -106,6 +106,8 @@ public class Kurssi {
     
     @Override
     public String toString() {
-        return "";
+        return this.nimi + ", " + this.opintopisteet + " op" + " (" + this.kurssikoodi + ")\n"
+               + "\t" + this.kuvaus + "\n"
+               + "\t" + "arvosana: " + this.arvosana + ", suorituspäivämäärä: " + this.suoritusPvm;
     }
 }
