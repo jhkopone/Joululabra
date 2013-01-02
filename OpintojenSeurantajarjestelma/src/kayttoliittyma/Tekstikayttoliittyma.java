@@ -26,7 +26,7 @@ public class Tekstikayttoliittyma {
             System.out.println();
             int komento = Integer.parseInt(lukija.nextLine());
             
-            if (komento == 6) {
+            if (komento == 7) {
                 break;
             } else if (komento == 1) {
                 lisaaOpiskelija();
@@ -38,7 +38,9 @@ public class Tekstikayttoliittyma {
                 lisaaKurssi();
             } else if (komento == 5) {
                 tulostaKurssit();
-            }      
+            } else if (komento == 6) {
+                tulostaYleisarvosanat();
+            }     
         }
         
         tulostaLopputeksti();
@@ -59,7 +61,8 @@ public class Tekstikayttoliittyma {
         System.out.println("3 - näytä opiskelijan tiedot");
         System.out.println("4 - lisää kurssi");
         System.out.println("5 - näytä suoritettujen kurssien tiedot");
-        System.out.println("6 - lopeta");
+        System.out.println("6 - laske opintokokonaisuuksien yleisarvosanat");
+        System.out.println("7 - lopeta");
         System.out.print("Syötä komento: ");
     }
     
@@ -95,7 +98,7 @@ public class Tekstikayttoliittyma {
         String opintopisteet = lukija.nextLine();
         
         System.out.println("Syötä kurssin taso: ");
-        String taso = this.kyseleKurssinTaso();
+        Taso taso = this.kyseleKurssinTaso();
         
         System.out.print("Syötä erikoistumislinja: ");
         String erikoistumislinja = lukija.nextLine();
@@ -113,6 +116,7 @@ public class Tekstikayttoliittyma {
     }
     
     public Taso kyseleKurssinTaso() {
+        Taso taso = null;
         
         System.out.println("PERUSOPINNOT (1)");
         System.out.println("AINEOPINNOT (2)"); 
@@ -123,7 +127,23 @@ public class Tekstikayttoliittyma {
         System.out.println("TVT_OPINNOT (7)");
         
         System.out.println("Valitse kurssin taso: ");
-        Taso taso = lukija.nextLine();
+        int valinta = Integer.parseInt(lukija.nextLine());
+        
+        if (valinta == 1) {
+            taso = Taso.PERUSOPINNOT;
+        } else if (valinta == 2) {
+            taso = Taso.AINEOPINNOT;
+        } else if (valinta == 3) {
+            taso = Taso.SYVENTAVAT_OPINNOT;
+        } else if (valinta == 4) {
+            taso = Taso.JATKO_OPINNOT;
+        } else if (valinta == 5) {
+            taso = Taso.MUUT_OPINNOT;
+        } else if (valinta == 6) {
+            taso = Taso.KIELIOPINNOT;
+        } else if (valinta == 7) {
+            taso = Taso.TVT_OPINNOT;
+        }
         
         return taso;
     }
@@ -133,6 +153,7 @@ public class Tekstikayttoliittyma {
         
         for (Taso taso : tulostettavat.keySet()) {
             System.out.println(tulostettavat.get(taso).getNimi());
+            System.out.println();
             
             for (Kurssi kurssi : tulostettavat.get(taso).getKurssit()) {
                 System.out.println(kurssi);
@@ -140,5 +161,16 @@ public class Tekstikayttoliittyma {
             
             System.out.println();
         }
+    }
+    
+    public void tulostaYleisarvosanat() {
+        Map<Taso, Opintokokonaisuus> tulostettavat = this.jarjestelma.getOpintokokonaisuudet();
+        
+        System.out.println("Yleisarvosanat:");
+        
+        for (Taso taso : tulostettavat.keySet()) {
+            System.out.println(tulostettavat.get(taso).getNimi() + ": " + tulostettavat.get(taso).yleisarvosana());
+        }    
+        
     }
 }

@@ -33,9 +33,9 @@ public class OpintokokonaisuusTest {
     @Before
     public void setUp() {
         opintokokonaisuus = new Opintokokonaisuus(Taso.PERUSOPINNOT);
-        kurssi1 = new Kurssi("testi1", "007","5", "perusopinnot", "ei ole", "testikurssi1", "5");
-        kurssi2 = new Kurssi("testi2", "008", "4", "perusopinnot", "ei ole", "testikurssi2", "5");
-        kurssi3 = new Kurssi("testi3", "009", "3", "perusopinnot", "ei ole", "testikurssi3", "5");
+        kurssi1 = new Kurssi("testi1", "007","5", Taso.PERUSOPINNOT, "ei ole", "testikurssi1", "5", "001122");
+        kurssi2 = new Kurssi("testi2", "008", "4", Taso.PERUSOPINNOT, "ei ole", "testikurssi2", "5", "001122");
+        kurssi3 = new Kurssi("testi3", "009", "3", Taso.PERUSOPINNOT, "ei ole", "testikurssi3", "5", "001122");
     }
     
     @After
@@ -73,7 +73,7 @@ public class OpintokokonaisuusTest {
         opintokokonaisuus.lisaaKurssi(kurssi1);
         opintokokonaisuus.lisaaKurssi(kurssi2);
         
-        opintokokonaisuus.poistaKurssi(kurssi1);
+        opintokokonaisuus.poistaKurssi(kurssi1.getKurssikoodi());
         
         assertEquals(opintokokonaisuus.kurssienLukumaara(), 1);
     }
@@ -84,8 +84,8 @@ public class OpintokokonaisuusTest {
         opintokokonaisuus.lisaaKurssi(kurssi2);
         opintokokonaisuus.lisaaKurssi(kurssi3);
         
-        opintokokonaisuus.poistaKurssi(kurssi1);
-        opintokokonaisuus.poistaKurssi(kurssi2);
+        opintokokonaisuus.poistaKurssi(kurssi1.getKurssikoodi());
+        opintokokonaisuus.poistaKurssi(kurssi2.getKurssikoodi());
         
         assertEquals(opintokokonaisuus.kurssienLukumaara(), 1);
     }

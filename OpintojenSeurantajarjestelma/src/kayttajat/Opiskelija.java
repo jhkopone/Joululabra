@@ -3,13 +3,14 @@
  * and open the template in the editor.
  */
 package kayttajat;
+import java.io.Serializable;
 import java.util.*;
 
 /**
  *
  * @author jhkopone
  */
-public class Opiskelija {
+public class Opiskelija implements Serializable{
     private String etunimi;
     private String sukunimi;
     private String opiskelijanumero;

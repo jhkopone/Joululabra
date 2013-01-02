@@ -7,7 +7,7 @@ kun uusi käyttäjä luodaan, kirjataan käyttäjätunnus ja salasana tiedostoon
 jokainen rivi sisältää tiedot muodossa tunnus:salasana. 
 
 TIEDOSTONKÄSITTELIJÄ
-
+http://www.cs.helsinki.fi/u/wikla/Ohjelmointi/Sisalto/5/Tiedostoista.html
 Tiedostonkäsittelijä-luokkaan
 - public void tallenna(String tiedosto, String teksti)
 - public void tallenna(String tiedosto, Map<String, String>)

@@ -26,9 +26,9 @@ public class Opintokokonaisuus {
         return false;
     }
     
-    public boolean poistaKurssi(Kurssi kurssi) {
-        if (this.kurssit.containsKey(kurssi.getKurssikoodi())) {
-            this.kurssit.remove(kurssi.getKurssikoodi());
+    public boolean poistaKurssi(String kurssikoodi) {
+        if (this.kurssit.containsKey(kurssikoodi)) {
+            this.kurssit.remove(kurssikoodi);
             return true;
         }
         return false;
@@ -61,5 +61,9 @@ public class Opintokokonaisuus {
     
     public Taso getNimi() {
         return this.nimi;
+    }
+    
+    public List<Kurssi> getKurssit() {
+        return new ArrayList<Kurssi>(this.kurssit.values());
     }
 }
