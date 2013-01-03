@@ -20,4 +20,5 @@ ohjelmointi 1.0h
 ohjelmointi 2.0h
 
 3.1.2012
-ohjelmointi 2.5h
+ohjelmointi 4.5h
+luokkakaavion laadinta 0.5h

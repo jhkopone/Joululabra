@@ -1,4 +1,3 @@
-
 package opintojenseurantajarjestelma;
 
 import org.junit.After;
@@ -8,10 +7,6 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 import static org.junit.Assert.*;
 
-/**
- *
- * @author jhkopone
- */
 public class OpintokokonaisuusTest {
     
     Opintokokonaisuus opintokokonaisuus;
@@ -113,6 +108,15 @@ public class OpintokokonaisuusTest {
         opintokokonaisuus.lisaaKurssi(kurssi3);
         
         assertEquals(opintokokonaisuus.yleisarvosana(), 5); 
+    }
+    
+    @Test
+    public void kurssienLukumaaraToimii() {
+        opintokokonaisuus.lisaaKurssi(kurssi1);
+        opintokokonaisuus.lisaaKurssi(kurssi2);
+        opintokokonaisuus.lisaaKurssi(kurssi3);
+        
+        assertEquals(opintokokonaisuus.kurssienLukumaara(), 3);
     }
     
     
