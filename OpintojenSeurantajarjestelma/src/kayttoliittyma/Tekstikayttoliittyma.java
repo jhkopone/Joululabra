@@ -22,28 +22,41 @@ public class Tekstikayttoliittyma {
         tulostaOtsikko();
         
         while (true) {
-            tulostaValikko();
-            System.out.println();
-            int komento = Integer.parseInt(lukija.nextLine());
+            tulostaKirjautumisvalikko();
+            int valinta = Integer.parseInt(lukija.nextLine());
             
-            if (komento == 7) {
-                break;
-            } else if (komento == 1) {
+            if (valinta == 1) {
+                if (kirjauduSisaan()) {
+                    kaytto();
+                }
+                continue;
+            } else if (valinta == 2) {
                 lisaaOpiskelija();
-            } else if (komento == 2) {
-                
-            } else if (komento == 3) {
-                tulostaOpiskelija();
-            } else if (komento == 4) {
-                lisaaKurssi();
-            } else if (komento == 5) {
-                tulostaKurssit();
-            } else if (komento == 6) {
-                tulostaYleisarvosanat();
-            }     
+            } else if (valinta == 3) {
+                break;
+            }
         }
-        
         tulostaLopputeksti();
+    }
+    
+    public void kaytto() {
+            while (true) {
+                tulostaValikko();
+                System.out.println();
+                int komento = Integer.parseInt(lukija.nextLine());
+            
+                if (komento == 5) {
+                    break;
+                } else if (komento == 1) {
+                    tulostaOpiskelija();
+                } else if (komento == 2) {
+                    lisaaKurssi();
+                } else if (komento == 3) {
+                    tulostaKurssit();
+                } else if (komento == 4) {
+                    tulostaYleisarvosanat();
+                }     
+            }
     }
     
     public void tulostaOtsikko() {
@@ -53,20 +66,21 @@ public class Tekstikayttoliittyma {
         System.out.println();
     }
     
-    public void tulostaKirjautumiskehote() {
-        
+    public void tulostaKirjautumisvalikko() { 
+        System.out.println("1 - kirjaudu sisään");
+        System.out.println("2 - lisää opiskelija");
+        System.out.println("3 - lopeta");
+        System.out.print("Syötä komento: ");
     }
     
     public void tulostaValikko() {
         System.out.println("KOMENNOT:");
         System.out.println();
-        System.out.println("1 - lisää opiskelija");
-        System.out.println("2 - kirjaudu sisään");
-        System.out.println("3 - näytä opiskelijan tiedot");
-        System.out.println("4 - lisää kurssi");
-        System.out.println("5 - näytä suoritettujen kurssien tiedot");
-        System.out.println("6 - laske opintokokonaisuuksien yleisarvosanat");
-        System.out.println("7 - lopeta");
+        System.out.println("1 - näytä opiskelijan tiedot");
+        System.out.println("2 - lisää kurssi");
+        System.out.println("3 - näytä suoritettujen kurssien tiedot");
+        System.out.println("4 - laske opintokokonaisuuksien yleisarvosanat");
+        System.out.println("5 - kirjaudu ulos");
         System.out.print("Syötä komento: ");
     }
     
@@ -87,13 +101,18 @@ public class Tekstikayttoliittyma {
         String tunnus = lukija.nextLine();
         System.out.print("Syötä salasana: ");
         String salasana = lukija.nextLine();
-        
-        
+
         this.jarjestelma.lisaaOpiskelija(etunimi, sukunimi, opiskelijanumero, aloitusPvm, tunnus, salasana);
     }
     
-    public void kirjauduSisaan() {
+    public boolean kirjauduSisaan() {
+        System.out.println("Syötä tunnus: ");
+        String tunnus = lukija.nextLine();
         
+        System.out.println("Syötä salasana: ");
+        String salasana = lukija.nextLine();
+        
+        return this.jarjestelma.kirjaudu(tunnus, salasana);
     }
     
     public void tulostaOpiskelija() {
@@ -164,16 +183,21 @@ public class Tekstikayttoliittyma {
     public void tulostaKurssit() {
         Map<Taso, Opintokokonaisuus> tulostettavat = this.jarjestelma.getOpintokokonaisuudet();
         
-        for (Taso taso : tulostettavat.keySet()) {
-            System.out.println(tulostettavat.get(taso).getNimi());
-            System.out.println();
+        try {
+            for (Taso taso : tulostettavat.keySet()) {
+                System.out.println(tulostettavat.get(taso).getNimi());
+                System.out.println();
             
-            for (Kurssi kurssi : tulostettavat.get(taso).getKurssit()) {
-                System.out.println(kurssi);
+                for (Kurssi kurssi : tulostettavat.get(taso).getKurssit()) {
+                    System.out.println(kurssi);
+                }
+            
+                System.out.println();
             }
+        } catch (Exception e) {
             
-            System.out.println();
         }
+
     }
     
     public void tulostaYleisarvosanat() {

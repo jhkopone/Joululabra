@@ -35,30 +35,59 @@ public class Tiedostonkasittelija {
 //        this.kirjoittaja.close();
 //    }
     
-    public void kirjoita(String tiedosto, List<Object> teksti) throws Exception {
+//    public void kirjoita(String tiedosto, List<Object> teksti) throws Exception {
+//        this.ulosF = new FileOutputStream(tiedosto);
+//        this.ulos = new ObjectOutputStream(ulosF);
+//        
+//        this.ulos.writeObject(teksti);
+//        
+//        this.ulos.flush();
+//        this.ulosF.close();
+//    }
+    
+    public void kirjoitaOpiskelijat(String tiedosto, List<Opiskelija> opiskelijat) throws Exception {
         this.ulosF = new FileOutputStream(tiedosto);
         this.ulos = new ObjectOutputStream(ulosF);
         
-        this.ulos.writeObject(teksti);
+        this.ulos.writeObject(opiskelijat);
         
         this.ulos.flush();
         this.ulosF.close();
     }
     
-    public List<Object> lue(String tiedosto) throws Exception {
-        this.sisaanF = new FileInputStream(tiedosto);
-        this.sisaan = new ObjectInputStream(sisaanF);
+    public void kirjoitaOpintokokonaisuudet(String tiedosto, Map<Taso, Opintokokonaisuus> opintokokonaisuudet) throws Exception {
+        this.ulosF = new FileOutputStream(tiedosto);
+        this.ulos = new ObjectOutputStream(ulosF);
         
-        List<Object> luettu = (List<Object>)sisaan.readObject();
-
-        return luettu;
+        this.ulos.writeObject(opintokokonaisuudet);
+        
+        this.ulos.flush();
+        this.ulosF.close();
     }
+    
+//    public List<Object> lue(String tiedosto) throws Exception {
+//        this.sisaanF = new FileInputStream(tiedosto);
+//        this.sisaan = new ObjectInputStream(sisaanF);
+//        
+//        List<Object> luettu = (List<Object>)sisaan.readObject();
+//
+//        return luettu;
+//    }
     
     public List<Opiskelija> lueOpiskelijat(String tiedosto) throws Exception {
         this.sisaanF = new FileInputStream(tiedosto);
         this.sisaan = new ObjectInputStream(sisaanF);
         
         List<Opiskelija> luettu = (List<Opiskelija>)sisaan.readObject();
+
+        return luettu;
+    }
+    
+    public Map<Taso, Opintokokonaisuus> lueOpintokokonaisuudet(String tiedosto) throws Exception {
+        this.sisaanF = new FileInputStream(tiedosto);
+        this.sisaan = new ObjectInputStream(sisaanF);
+        
+        Map<Taso, Opintokokonaisuus> luettu = (Map<Taso, Opintokokonaisuus>)sisaan.readObject();
 
         return luettu;
     }
