@@ -18,3 +18,6 @@ ohjelmointi 1.0h
 
 2.1.2012
 ohjelmointi 2.0h
+
+3.1.2012
+ohjelmointi 0.5h

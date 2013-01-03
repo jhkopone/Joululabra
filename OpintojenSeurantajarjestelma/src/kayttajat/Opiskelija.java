@@ -16,11 +16,17 @@ public class Opiskelija implements Serializable{
     private String opiskelijanumero;
     private String aloituspvm;
     
-    public Opiskelija(String etunimi, String sukunimi, String opiskelijanumero, String aloituspvm) {
+    private String tunnus;
+    private String salasana;
+    
+    public Opiskelija(String etunimi, String sukunimi, String opiskelijanumero, String aloituspvm, String tunnus, String salasana) {
         this.etunimi = etunimi;
         this.sukunimi = sukunimi;
         this.opiskelijanumero = opiskelijanumero;
         this.aloituspvm = aloituspvm;
+        
+        this.tunnus = tunnus;
+        this.salasana = salasana;
     }
 
     public String getNimi() {
@@ -34,6 +40,20 @@ public class Opiskelija implements Serializable{
     public String getAloituspvm() {
         return aloituspvm;
     }
+
+    public String getTunnus() {
+        return tunnus;
+    }
+
+    public String getSalasana() {
+        return salasana;
+    }
+
+    public void setSalasana(String salasana) {
+        this.salasana = salasana;
+    }
+    
+    
     
     @Override
     public String toString() {

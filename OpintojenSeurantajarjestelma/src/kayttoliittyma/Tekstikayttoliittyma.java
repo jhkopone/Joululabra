@@ -53,6 +53,10 @@ public class Tekstikayttoliittyma {
         System.out.println();
     }
     
+    public void tulostaKirjautumiskehote() {
+        
+    }
+    
     public void tulostaValikko() {
         System.out.println("KOMENNOT:");
         System.out.println();
@@ -79,8 +83,17 @@ public class Tekstikayttoliittyma {
         String opiskelijanumero = lukija.nextLine();
         System.out.print("Syötä opintojen aloituspäivämäärä (muodossa ppkkvv): ");
         String aloitusPvm = lukija.nextLine();
+        System.out.print("Syötä käyttäjätunnus: ");
+        String tunnus = lukija.nextLine();
+        System.out.print("Syötä salasana: ");
+        String salasana = lukija.nextLine();
         
-        this.jarjestelma.lisaaOpiskelija(etunimi, sukunimi, opiskelijanumero, aloitusPvm);
+        
+        this.jarjestelma.lisaaOpiskelija(etunimi, sukunimi, opiskelijanumero, aloitusPvm, tunnus, salasana);
+    }
+    
+    public void kirjauduSisaan() {
+        
     }
     
     public void tulostaOpiskelija() {

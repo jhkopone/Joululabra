@@ -5,6 +5,7 @@
 package opintojenseurantajarjestelma;
 import java.io.*;
 import java.util.*;
+import kayttajat.Opiskelija;
 
 /**
  *
@@ -15,8 +16,8 @@ public class Tiedostonkasittelija {
     private FileOutputStream ulosF;
     private ObjectOutputStream ulos;
     
-    private FileInputStream sisäänF;
-    private ObjectInputStream sisään;
+    private FileInputStream sisaanF;
+    private ObjectInputStream sisaan;
     
     private File tiedosto;
     private Scanner lukija;
@@ -44,16 +45,21 @@ public class Tiedostonkasittelija {
         this.ulosF.close();
     }
     
-    public List<String> lue(String tiedosto) {
-        this.lukija = new Scanner(tiedosto);
-        ArrayList<String> luettu = new ArrayList<String>();
+    public List<Object> lue(String tiedosto) throws Exception {
+        this.sisaanF = new FileInputStream(tiedosto);
+        this.sisaan = new ObjectInputStream(sisaanF);
         
-        while (lukija.hasNextLine()) {
-            String rivi = lukija.nextLine();
-            luettu.add(rivi);
-        }
+        List<Object> luettu = (List<Object>)sisaan.readObject();
+
+        return luettu;
+    }
+    
+    public List<Opiskelija> lueOpiskelijat(String tiedosto) throws Exception {
+        this.sisaanF = new FileInputStream(tiedosto);
+        this.sisaan = new ObjectInputStream(sisaanF);
         
-        this.lukija.close();
+        List<Opiskelija> luettu = (List<Opiskelija>)sisaan.readObject();
+
         return luettu;
     }
     
