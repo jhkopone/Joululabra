@@ -83,23 +83,23 @@ public class OpintojenSeurantajarjestelmaTest {
     
     @Test
     public void kurssinLisaaminenToimiiYhdellaKurssilla() {
-        jarjestelma.lisaaKurssi("OHPE", "007", "5", Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", "5", "010101");
+        jarjestelma.lisaaKurssi("OHPE", "007", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
         
         assertEquals(jarjestelma.kaikkienKurssienLukumaara(), 1);
     }
     
     @Test
     public void kurssinLisaaminenToimiiUseammallaKurssilla() {
-        jarjestelma.lisaaKurssi("OHPE1", "007", "5", Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", "5", "010101");
-        jarjestelma.lisaaKurssi("OHPE2", "008", "5", Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", "5", "010101");
-        jarjestelma.lisaaKurssi("OHPE3", "009", "5", Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", "5", "010101");
+        jarjestelma.lisaaKurssi("OHPE1", "007", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
+        jarjestelma.lisaaKurssi("OHPE2", "008", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
+        jarjestelma.lisaaKurssi("OHPE3", "009", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
         
         assertEquals(jarjestelma.kaikkienKurssienLukumaara(), 3);
     }
     
     @Test
     public void kurssinPoistaminenToimiiYhdellaKurssilla() {
-        jarjestelma.lisaaKurssi("OHPE", "007", "5", Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", "5", "010101");
+        jarjestelma.lisaaKurssi("OHPE", "007", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
         jarjestelma.poistaKurssi("007");
         
         assertEquals(jarjestelma.kaikkienKurssienLukumaara(), 0);
@@ -107,9 +107,9 @@ public class OpintojenSeurantajarjestelmaTest {
     
     @Test
     public void kurssinPoistaminenToimiiUseammallaKurssilla() {
-        jarjestelma.lisaaKurssi("OHPE1", "007", "5", Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", "5", "010101");
-        jarjestelma.lisaaKurssi("OHPE2", "008", "5", Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", "5", "010101");
-        jarjestelma.lisaaKurssi("OHPE3", "009", "5", Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", "5", "010101");
+        jarjestelma.lisaaKurssi("OHPE1", "007", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
+        jarjestelma.lisaaKurssi("OHPE2", "008", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
+        jarjestelma.lisaaKurssi("OHPE3", "009", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
         
         jarjestelma.poistaKurssi("008");
         
@@ -118,16 +118,16 @@ public class OpintojenSeurantajarjestelmaTest {
     
     @Test
     public void kaikkienKurssienLukumaaraToimiiYhdellaKurssilla() {
-        jarjestelma.lisaaKurssi("OHPE", "007", "5", Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", "5", "010101");
+        jarjestelma.lisaaKurssi("OHPE", "007", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
         
         assertEquals(jarjestelma.kaikkienKurssienLukumaara(), 1);
     }
     
     @Test
     public void kaikkienKurssienLukumaaraToimiiUseammallaKurssilla() {
-        jarjestelma.lisaaKurssi("OHPE1", "007", "5", Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", "5", "010101");
-        jarjestelma.lisaaKurssi("OHPE2", "008", "5", Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", "5", "010101");
-        jarjestelma.lisaaKurssi("OHPE3", "009", "5", Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", "5", "010101");
+        jarjestelma.lisaaKurssi("OHPE1", "007", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
+        jarjestelma.lisaaKurssi("OHPE2", "008", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
+        jarjestelma.lisaaKurssi("OHPE3", "009", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
         
         assertEquals(jarjestelma.kaikkienKurssienLukumaara(), 3);
     }
@@ -148,18 +148,23 @@ public class OpintojenSeurantajarjestelmaTest {
     
     @Test
     public void opintopisteidenLaskentaToimiiYhdellaKurssilla() {
-        jarjestelma.lisaaKurssi("OHPE", "007", "5", Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", "5", "010101");
+        jarjestelma.lisaaKurssi("OHPE", "007", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
         
         assertEquals(jarjestelma.opintopisteetYhteensa(), 5);
     }
     
     @Test
     public void opintopisteidenLaskentaToimiiUseammallaKurssilla() {
-        jarjestelma.lisaaKurssi("OHPE", "007", "5", Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", "5", "010101");
-        jarjestelma.lisaaKurssi("OHPE2", "008", "5", Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", "5", "010101");
-        jarjestelma.lisaaKurssi("OHPE3", "009", "5", Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", "5", "010101");
+        jarjestelma.lisaaKurssi("OHPE", "007", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
+        jarjestelma.lisaaKurssi("OHPE2", "008", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
+        jarjestelma.lisaaKurssi("OHPE3", "009", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
         
         assertEquals(jarjestelma.opintopisteetYhteensa(), 15);
+    }
+    
+    @Test
+    public void arvioValmistumisajankohdastaToimii() {
+        
     }
     
     

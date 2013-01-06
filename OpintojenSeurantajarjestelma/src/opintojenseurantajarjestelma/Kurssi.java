@@ -3,25 +3,26 @@
  * and open the template in the editor.
  */
 package opintojenseurantajarjestelma;
+import java.io.Serializable;
 import java.util.*;
 /**
  *
  * @author jhkopone
  */
-public class Kurssi {
+public class Kurssi implements Serializable{
     private String nimi;
     private String kurssikoodi;
-    private String opintopisteet;
+    private Integer opintopisteet;
     private Taso taso;
     private String erikoistumislinja;
     private String kuvaus;
-    private String arvosana;
+    private Integer arvosana;
     private String suoritusPvm;
     
     public Kurssi() {  
     }
     
-    public Kurssi (String nimi, String kurssikoodi, String opintopisteet, Taso taso, String erikoistumislinja, String kuvaus, String arvosana, String suoritusPvm) {
+    public Kurssi (String nimi, String kurssikoodi, Integer opintopisteet, Taso taso, String erikoistumislinja, String kuvaus, Integer arvosana, String suoritusPvm) {
         this.nimi = nimi;
         this.kurssikoodi = kurssikoodi;
         this.opintopisteet = opintopisteet;
@@ -42,7 +43,7 @@ public class Kurssi {
         this.kurssikoodi = kurssikoodi;
     }
     
-    public void setOpintopisteet(String opintopisteet) {
+    public void setOpintopisteet(Integer opintopisteet) {
         this.opintopisteet = opintopisteet;
     }
     
@@ -58,7 +59,7 @@ public class Kurssi {
         this.kuvaus = kuvaus;
     }
     
-    public void setArvosana(String arvosana) {
+    public void setArvosana(Integer arvosana) {
         this.arvosana = arvosana;
     }
 
@@ -78,7 +79,7 @@ public class Kurssi {
         return kurssikoodi;
     }
 
-    public String getOpintopisteet() {
+    public Integer getOpintopisteet() {
         return opintopisteet;
     }
 
@@ -94,7 +95,7 @@ public class Kurssi {
         return kuvaus;
     }
 
-    public String getArvosana() {
+    public Integer getArvosana() {
         return arvosana;
     }
 

@@ -55,7 +55,9 @@ public class Tekstikayttoliittyma {
                     tulostaKurssit();
                 } else if (komento == 4) {
                     tulostaYleisarvosanat();
-                }     
+                } else if (komento == 6) {
+                    tulostaArvioituValmistumisaika();          
+                }    
             }
     }
     
@@ -81,6 +83,7 @@ public class Tekstikayttoliittyma {
         System.out.println("3 - näytä suoritettujen kurssien tiedot");
         System.out.println("4 - laske opintokokonaisuuksien yleisarvosanat");
         System.out.println("5 - kirjaudu ulos");
+        System.out.println("6 - arvioi valmistumisajankohta kandi");
         System.out.print("Syötä komento: ");
     }
     
@@ -127,7 +130,7 @@ public class Tekstikayttoliittyma {
         String kurssikoodi = lukija.nextLine();
         
         System.out.print("Syötä opintopistemäärä: ");
-        String opintopisteet = lukija.nextLine();
+        Integer opintopisteet = Integer.parseInt(lukija.nextLine());
         
         System.out.println("Syötä kurssin taso: ");
         Taso taso = this.kyseleKurssinTaso();
@@ -139,7 +142,7 @@ public class Tekstikayttoliittyma {
         String kuvaus = lukija.nextLine();
         
         System.out.print("Syötä kurssin arvosana: ");
-        String arvosana = lukija.nextLine();
+        Integer arvosana = Integer.parseInt(lukija.nextLine());
         
         System.out.print("Syötä kurssin suorituspäivämäärä (muodossa ppkkvv): ");
         String suoritusPvm = lukija.nextLine();
@@ -209,5 +212,9 @@ public class Tekstikayttoliittyma {
             System.out.println(tulostettavat.get(taso).getNimi() + ": " + tulostettavat.get(taso).yleisarvosana());
         }    
         
+    }
+    
+    public void tulostaArvioituValmistumisaika() {
+        System.out.println(this.jarjestelma.arvioValmistumisajankohdasta());
     }
 }

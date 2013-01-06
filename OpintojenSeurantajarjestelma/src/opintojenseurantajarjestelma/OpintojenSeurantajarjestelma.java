@@ -4,7 +4,9 @@
  */
 package opintojenseurantajarjestelma;
 import java.util.*;
+import java.text.*;
 import kayttajat.*;
+
 /**
  *
  * @author jhkopone
@@ -65,7 +67,7 @@ public class OpintojenSeurantajarjestelma {
         try {
             this.opintokokonaisuudet = this.tiedostonkasittelija.lueOpintokokonaisuudet(this.opiskelija.getTunnus());
         } catch (Exception e) {
-            
+            System.out.println("ongelmia opintojen lataamisessa!");
         } 
     }
     
@@ -73,17 +75,18 @@ public class OpintojenSeurantajarjestelma {
         try {
            this.tiedostonkasittelija.kirjoitaOpintokokonaisuudet(this.opiskelija.getTunnus(), this.opintokokonaisuudet); 
         } catch (Exception e) {
-            
+            System.out.println(e);
         }
     }
 
     public boolean kirjaudu(String tunnus, String salasana) {
         try {
             lataaOpiskelijat();
-            for (Opiskelija opiskelija : this.opiskelijat) {
-                if (opiskelija.getTunnus().equals(tunnus) && opiskelija.getSalasana().equals(salasana)) {
-                    this.opiskelija = opiskelija;
+            for (Opiskelija o : this.opiskelijat) {
+                if (o.getTunnus().equals(tunnus) && o.getSalasana().equals(salasana)) {
+                    this.opiskelija = o;
                     lataaOpintokokonaisuudet();
+                    System.out.println("kirjautuminen ok!");
                     return true;
                 }
             }
@@ -112,7 +115,7 @@ public class OpintojenSeurantajarjestelma {
         this.opiskelijat.remove(this.opiskelija);
     }
     
-    public void lisaaKurssi(String nimi, String kurssikoodi, String opintopisteet, Taso taso, String erikoistumislinja, String kuvaus, String arvosana, String suoritusPvm) {
+    public void lisaaKurssi(String nimi, String kurssikoodi, Integer opintopisteet, Taso taso, String erikoistumislinja, String kuvaus, Integer arvosana, String suoritusPvm) {
         Kurssi kurssi = new Kurssi(nimi, kurssikoodi, opintopisteet, taso, erikoistumislinja, kuvaus, arvosana, suoritusPvm);
         
         if (this.opintokokonaisuudet == null) {
@@ -123,7 +126,8 @@ public class OpintojenSeurantajarjestelma {
             this.opintokokonaisuudet.put(taso, new Opintokokonaisuus(taso));
         }
         
-        this.opintokokonaisuudet.get(taso).lisaaKurssi(kurssi);   
+        this.opintokokonaisuudet.get(taso).lisaaKurssi(kurssi);
+        this.tallennaOpintokokonaisuudet();
     }
     
     public void poistaKurssi(String kurssikoodi) {  
@@ -161,6 +165,37 @@ public class OpintojenSeurantajarjestelma {
         
         return opintopisteet;
     }
+   
+   public String arvioValmistumisajankohdasta() {
+       DateFormat df = new SimpleDateFormat("ddMMyy");
+       Date opiskelijanAloitusPvm = new Date();
+       try {
+          opiskelijanAloitusPvm = df.parse(this.opiskelija.getAloituspvm()); 
+       } catch (Exception e) {
+           
+       }
+       
+       Date paivamaara = new Date();
+       long aloitus = opiskelijanAloitusPvm.getTime();
+       long nyt = paivamaara.getTime();
+       
+       long erotus = nyt - aloitus;
+       
+       long aikaaPerOpintopiste = erotus / opintopisteetYhteensa();
+       
+       int opintopisteitaKandiksi = 180 - opintopisteetYhteensa();
+       
+       int opintopisteitaMaisteriksi = 300 - opintopisteetYhteensa();
+       
+       Date valmistuminenKandiksi = new Date(paivamaara.getTime() + (aikaaPerOpintopiste * opintopisteitaKandiksi));
+       
+       Date valmistuminenMaisteriksi = new Date(paivamaara.getTime() + (aikaaPerOpintopiste * opintopisteitaKandiksi));
+       
+       String tuloste = df.format(valmistuminenKandiksi);
+       
+       
+       return tuloste;
+   }
     
     
 }

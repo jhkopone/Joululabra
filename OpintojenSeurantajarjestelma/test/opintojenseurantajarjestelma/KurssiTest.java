@@ -31,7 +31,7 @@ public class KurssiTest {
     
     @Before
     public void setUp() {
-        kurssi = new Kurssi("OHPE", "007", "5", Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", "5", "010101");
+        kurssi = new Kurssi("OHPE", "007", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
     }
     
     @After

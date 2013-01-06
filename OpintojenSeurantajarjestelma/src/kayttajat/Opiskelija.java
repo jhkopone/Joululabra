@@ -57,6 +57,6 @@ public class Opiskelija implements Serializable{
     
     @Override
     public String toString() {
-        return this.getNimi() + " " + this.opiskelijanumero;
+        return this.getNimi() + " " + this.opiskelijanumero + "aloituspäivämäärä: " + this.aloituspvm;
     }
 }

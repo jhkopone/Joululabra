@@ -6,6 +6,7 @@ package paaohjelma;
 import opintojenseurantajarjestelma.*;
 import kayttoliittyma.*;
 import java.util.*;
+import javax.swing.*;
 /**
  *
  * @author Koppa
@@ -19,7 +20,11 @@ public class Paaohjelma {
         Scanner lukija = new Scanner(System.in);       
         OpintojenSeurantajarjestelma jarjestelma = new OpintojenSeurantajarjestelma();
         
-        Tekstikayttoliittyma tekstikayttoliittyma = new Tekstikayttoliittyma(lukija, jarjestelma);
-        tekstikayttoliittyma.run();
+//        Tekstikayttoliittyma tekstikayttoliittyma = new Tekstikayttoliittyma(lukija, jarjestelma);
+//        tekstikayttoliittyma.run();
+        
+        GraafinenKayttoliittyma gui = new GraafinenKayttoliittyma(jarjestelma);
+        SwingUtilities.invokeLater(gui);
+        
     }
 }

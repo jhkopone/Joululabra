@@ -3,12 +3,13 @@
  * and open the template in the editor.
  */
 package opintojenseurantajarjestelma;
+import java.io.Serializable;
 import java.util.*;
 /**
  *
  * @author jhkopone
  */
-public class Opintokokonaisuus {
+public class Opintokokonaisuus implements Serializable{
     private Taso nimi;
     private Map<String, Kurssi> kurssit;
 
@@ -37,8 +38,8 @@ public class Opintokokonaisuus {
     public int opintopisteetYhteensa() {
         int opintopisteet = 0;
         
-        for (String kurssi : this.kurssit.keySet()) {
-            opintopisteet += Integer.parseInt(this.kurssit.get(kurssi).getOpintopisteet());
+        for (Kurssi kurssi : this.kurssit.values()) {
+            opintopisteet += kurssi.getOpintopisteet();
         }
         
         return opintopisteet;
@@ -52,8 +53,8 @@ public class Opintokokonaisuus {
         int yleisarvosana = 0;
         
         
-        for (String kurssi : this.kurssit.keySet()) {
-            yleisarvosana = yleisarvosana + (Integer.parseInt(this.kurssit.get(kurssi).getArvosana()) * Integer.parseInt(this.kurssit.get(kurssi).getOpintopisteet()));
+        for (Kurssi kurssi : this.kurssit.values()) {
+            yleisarvosana = yleisarvosana + (kurssi.getArvosana() * kurssi.getOpintopisteet());
         }
         
         return yleisarvosana / this.opintopisteetYhteensa();

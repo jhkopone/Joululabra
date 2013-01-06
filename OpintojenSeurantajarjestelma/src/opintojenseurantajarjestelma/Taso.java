@@ -4,11 +4,13 @@
  */
 package opintojenseurantajarjestelma;
 
+import java.io.Serializable;
+
 /**
  *
  * @author jhkopone
  */
-public enum Taso {
+public enum Taso implements Serializable{
     PERUSOPINNOT (1), 
     AINEOPINNOT (2), 
     SYVENTAVAT_OPINNOT(3), 
