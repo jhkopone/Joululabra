@@ -1,20 +1,18 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package kayttajat;
 import java.util.*;
+import kayttoliittyma.PaaIkkuna;
+import opintojenseurantajarjestelma.OpintojenSeurantajarjestelma;
 import opintojenseurantajarjestelma.Tiedostonkasittelija;
-/**
- *
- * @author Koppa
- */
+
 public class KayttajienHallinta {
     private Tiedostonkasittelija tiedostonkasittelija;
     private List<Opiskelija> opiskelijat;
     
-    public KayttajienHallinta() {
+    private OpintojenSeurantajarjestelma jarjestelma;
+    
+    public KayttajienHallinta(OpintojenSeurantajarjestelma jarjestelma) {
         this.tiedostonkasittelija = new Tiedostonkasittelija();
+        this.jarjestelma = jarjestelma;
         lataaKayttajat();
     }
     
@@ -22,7 +20,7 @@ public class KayttajienHallinta {
         try {
             this.opiskelijat = this.tiedostonkasittelija.lueOpiskelijat("kayttajat.lista");
         } catch (Exception e) {
-      
+            
         } 
     }
     
@@ -58,11 +56,18 @@ public class KayttajienHallinta {
         return false;
     }
     
-    public boolean kirjauduSisaan() {
-        return false;
+    public void kirjauduSisaan(String tunnus, String salasana) {
+        for (Opiskelija o : this.opiskelijat) {
+            if (o.getTunnus().equals(tunnus) && o.getSalasana().equals(salasana)) {
+                this.jarjestelma.setOpiskelija(o);
+                PaaIkkuna paaIkkuna = new PaaIkkuna(this.jarjestelma);
+                paaIkkuna.run();
+            }
+        }
     }
     
     public boolean kirjauduUlos() {
         return false;
     }
+    
 }

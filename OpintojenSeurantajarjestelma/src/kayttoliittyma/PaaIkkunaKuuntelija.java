@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package kayttoliittyma;
 
 import java.awt.event.ActionEvent;
@@ -9,15 +6,18 @@ import java.awt.event.ActionListener;
 import javax.swing.JLabel;
 import opintojenseurantajarjestelma.OpintojenSeurantajarjestelma;
 
-/**
- *
- * @author Koppa
- */
-public class OpintojenSeurantajarjestelmaKuuntelija implements ActionListener {
+public class PaaIkkunaKuuntelija implements ActionListener {
     private OpintojenSeurantajarjestelma jarjestelma;
     private JLabel tekstikentta;
+    private JButton
+    private JButton
+    private JButton
+    private JButton
+    private JButton
+    private JButton        
+         
     
-    public OpintojenSeurantajarjestelmaKuuntelija(OpintojenSeurantajarjestelma jarjestelma, JLabel tekstikentta) {
+    public PaaIkkunaKuuntelija(OpintojenSeurantajarjestelma jarjestelma, JLabel tekstikentta) {
         this.jarjestelma = jarjestelma;
         this.tekstikentta = tekstikentta;
     }

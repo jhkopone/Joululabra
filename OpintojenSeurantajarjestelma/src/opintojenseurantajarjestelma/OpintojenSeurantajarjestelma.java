@@ -14,17 +14,21 @@ import kayttajat.*;
 public class OpintojenSeurantajarjestelma {
     private Tiedostonkasittelija tiedostonkasittelija;
     
+    private boolean kirjautuminen;
     private Opiskelija opiskelija;
-    private List<Opiskelija> opiskelijat;
     private Map<Taso, Opintokokonaisuus> opintokokonaisuudet;
     
     
-    public OpintojenSeurantajarjestelma() {
+    public OpintojenSeurantajarjestelma(Opiskelija opiskelija) {
         this.tiedostonkasittelija = new Tiedostonkasittelija();
+        this.kirjautuminen = false;
         
-        this.opiskelija = null;
+        this.opiskelija = opiskelija;
         this.opintokokonaisuudet = null;
-        this.opiskelijat = new ArrayList<Opiskelija>();
+    }
+    
+    public void setOpiskelija(Opiskelija opiskelija) {
+        this.opiskelija = opiskelija;
     }
 
     // Getterit
@@ -37,31 +41,20 @@ public class OpintojenSeurantajarjestelma {
         return opiskelija;
     }
 
-    public List<Opiskelija> getOpiskelijat() {
-        return opiskelijat;
-    }
     
     public Map<Taso, Opintokokonaisuus> getOpintokokonaisuudet() {
         return this.opintokokonaisuudet;
     }
     
+    public boolean getKirjautuminen() {
+        return this.kirjautuminen;
+    }
+    
     // Tiedostonkasittely
     
-    public void lataaOpiskelijat() {
-        try {
-            this.opiskelijat = this.tiedostonkasittelija.lueOpiskelijat("kayttajat.lista");
-        } catch (Exception e) {
-            
-        } 
-    }
+
     
-    public void tallennaOpiskelijat() {
-        try {
-           this.tiedostonkasittelija.kirjoitaOpiskelijat("kayttajat.lista", this.opiskelijat); 
-        } catch (Exception e) {
-            
-        }
-    }
+
     
     public void lataaOpintokokonaisuudet() {
         try {
@@ -79,41 +72,9 @@ public class OpintojenSeurantajarjestelma {
         }
     }
 
-    public boolean kirjaudu(String tunnus, String salasana) {
-        try {
-            lataaOpiskelijat();
-            for (Opiskelija o : this.opiskelijat) {
-                if (o.getTunnus().equals(tunnus) && o.getSalasana().equals(salasana)) {
-                    this.opiskelija = o;
-                    lataaOpintokokonaisuudet();
-                    System.out.println("kirjautuminen ok!");
-                    return true;
-                }
-            }
-            return false;
-        } catch (Exception e) {
-            return false;
-        }
 
-    }
     
-    public void lisaaOpiskelija(String etunimi, String sukunimi, String opiskelijanumero, String aloituspvm, String tunnus, String salasana) {
-        if (this.opiskelijat == null) {
-            this.opiskelijat = new ArrayList<Opiskelija>();
-        }
-        
-        try {
-            this.opiskelija = new Opiskelija(etunimi, sukunimi, opiskelijanumero, aloituspvm, tunnus, salasana);
-            this.opiskelijat.add(opiskelija);
-            tallennaOpiskelijat();
-        } catch (Exception e) {
-            
-        }
-    }
-    
-    public void poistaOpiskelija() {
-        this.opiskelijat.remove(this.opiskelija);
-    }
+
     
     public void lisaaKurssi(String nimi, String kurssikoodi, Integer opintopisteet, Taso taso, String erikoistumislinja, String kuvaus, Integer arvosana, String suoritusPvm) {
         Kurssi kurssi = new Kurssi(nimi, kurssikoodi, opintopisteet, taso, erikoistumislinja, kuvaus, arvosana, suoritusPvm);
@@ -194,6 +155,18 @@ public class OpintojenSeurantajarjestelma {
        String tuloste = df.format(valmistuminenKandiksi);
        
        
+       return tuloste;
+   }
+   
+   public String tulostaKurssit() {
+       String tuloste = "";
+       
+       for (Taso taso : this.opintokokonaisuudet.keySet()) {
+           for (Kurssi kurssi : this.opintokokonaisuudet.get(taso).getKurssit()) {
+               tuloste = tuloste + kurssi.lyhytTuloste();
+           }
+       }
+
        return tuloste;
    }
     

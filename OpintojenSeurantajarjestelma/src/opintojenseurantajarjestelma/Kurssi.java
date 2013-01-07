@@ -111,4 +111,8 @@ public class Kurssi implements Serializable{
                + "\t" + this.kuvaus + "\n"
                + "\t" + "arvosana: " + this.arvosana + ", suorituspäivämäärä: " + this.suoritusPvm;
     }
+    
+    public String lyhytTuloste() {
+        return this.nimi + " (" + this.kurssikoodi + ") ";
+    }
 }
