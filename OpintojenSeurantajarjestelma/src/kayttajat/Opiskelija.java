@@ -1,16 +1,15 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package kayttajat;
 import java.io.Serializable;
 import java.util.*;
 
 /**
- *
+ * Kuvataan Opiskelijaa, joka toimii Opintojen seurantajärjestelmän käyttäjänä.
+ * Konstruktorin lisäksi luokka sisältää ainoastaan Gettereitä ja Settereitä.
  * @author jhkopone
  */
 public class Opiskelija implements Serializable{
+ 
     private String etunimi;
     private String sukunimi;
     private String opiskelijanumero;
@@ -18,7 +17,10 @@ public class Opiskelija implements Serializable{
     
     private String tunnus;
     private String salasana;
-    
+
+/**    
+* Opiskelija-luokan konstruktori.    
+*/    
     public Opiskelija(String etunimi, String sukunimi, String opiskelijanumero, String aloituspvm, String tunnus, String salasana) {
         this.etunimi = etunimi;
         this.sukunimi = sukunimi;

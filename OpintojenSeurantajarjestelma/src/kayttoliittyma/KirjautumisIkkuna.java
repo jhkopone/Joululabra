@@ -3,7 +3,12 @@ import java.awt.*;
 import javax.swing.*;
 import kayttajat.KayttajienHallinta;
 import opintojenseurantajarjestelma.OpintojenSeurantajarjestelma;
-
+/**
+ * KirjautumisIkkuna-luokka käyttää KayttajienHallinta-luokkaa
+ * kirjautumisen hallintaan. Toiminnallisuus toteutetaan KirjautumisKuuntelija-
+ * luokan avulla.
+ * @author jhkopone
+ */
 public class KirjautumisIkkuna implements Runnable{
     private JFrame frame;
     private KayttajienHallinta jarjestelma;

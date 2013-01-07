@@ -8,7 +8,8 @@ import javax.swing.*;
 import opintojenseurantajarjestelma.OpintojenSeurantajarjestelma;
 
 /**
- *
+ * PaaIkkuna-luokka on graafisen käyttöliittymät pääikkunan muodostava luokka.
+ * Luokkaan liittyy PaaIkkunaKuuntelija-luokka, joka toteuttaa ikkunan toiminnallisuuden.
  * @author Koppa
  */
 public class PaaIkkuna implements Runnable {

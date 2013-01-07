@@ -9,7 +9,7 @@ import java.util.*;
 import javax.swing.*;
 import kayttajat.KayttajienHallinta;
 /**
- *
+ * Paaohjelma on ohjelman pääluokka, jossa main()-metodi sijaitsee.
  * @author Koppa
  */
 public class Paaohjelma {

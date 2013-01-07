@@ -8,54 +8,66 @@ import java.text.*;
 import kayttajat.*;
 
 /**
- *
+ * OpintojenSeurantajarjestelma-luokka on ohjelman pääluokka. Siitä muodostetut oliot
+ * toimivat järjestelmässä niin sanottuina ohjausolioina.
  * @author jhkopone
  */
 public class OpintojenSeurantajarjestelma {
     private Tiedostonkasittelija tiedostonkasittelija;
     
-    private boolean kirjautuminen;
     private Opiskelija opiskelija;
     private Map<Taso, Opintokokonaisuus> opintokokonaisuudet;
     
-    
+/**
+ * OpintojenSeurantajarjestelma-luokan konstruktori. Vaatii parametrikseen
+ * Opiskelija-luokan ilmentymän.
+ */     
     public OpintojenSeurantajarjestelma(Opiskelija opiskelija) {
         this.tiedostonkasittelija = new Tiedostonkasittelija();
-        this.kirjautuminen = false;
         
         this.opiskelija = opiskelija;
         this.opintokokonaisuudet = null;
     }
-    
+/**
+ * Metodi asettaa opiskelija-oliomuuttujan arvoksi viitteen parametrina saamaansa
+ * Opiskelija-olioon.
+ */     
     public void setOpiskelija(Opiskelija opiskelija) {
         this.opiskelija = opiskelija;
     }
 
     // Getterit
-    
+/**
+ * Metodi palauttaa tiedostonkasittelija-oliomuuttujaan tallennetun viitteen.
+ */     
     public Tiedostonkasittelija getTiedostonkasittelija() {
         return tiedostonkasittelija;
     }
-
+/**
+ * Metodi palauttaa opiskelija-oliomuuttujaan tallennetun viitteen.
+ */ 
     public Opiskelija getOpiskelija() {
         return opiskelija;
     }
 
-    
+/**
+ * Metodi palauttaa opintokokonaisuudet-oliomuuttujaan tallennetun viitteen Map-rajapinnan
+ * toteuttavaan olioon.
+ */     
     public Map<Taso, Opintokokonaisuus> getOpintokokonaisuudet() {
         return this.opintokokonaisuudet;
     }
     
-    public boolean getKirjautuminen() {
-        return this.kirjautuminen;
-    }
     
     // Tiedostonkasittely
     
 
     
 
-    
+/**
+ * Metodi lataa tiedostosta (joka määräytyy opiskelija-oliomuuttujan arvon mukaan) Map-rajapinnan
+ * toteuttavan olion, johon kyseisen opiskelijan suorittamat kurssit on tallennettu opintokokonaisuuksittain.
+ */     
     public void lataaOpintokokonaisuudet() {
         try {
             this.opintokokonaisuudet = this.tiedostonkasittelija.lueOpintokokonaisuudet(this.opiskelija.getTunnus());
@@ -63,7 +75,11 @@ public class OpintojenSeurantajarjestelma {
             System.out.println("ongelmia opintojen lataamisessa!");
         } 
     }
-    
+/**
+ * Metodi tallentaa tiedostoon (joka määräytyy opiskelija-oliomuuttujan arvon mukaan) opintokokonaisuudet-
+ * oliomuuttujaan tallennetun Map-rajapinnan
+ * toteuttavan olion, johon kyseisen opiskelijan suorittamat kurssit on tallennettu opintokokonaisuuksittain.
+ */     
     public void tallennaOpintokokonaisuudet() {
         try {
            this.tiedostonkasittelija.kirjoitaOpintokokonaisuudet(this.opiskelija.getTunnus(), this.opintokokonaisuudet); 
@@ -75,7 +91,9 @@ public class OpintojenSeurantajarjestelma {
 
     
 
-    
+/**
+ * Metodi lisää opiskelijan suorittamiin kursseihin uuden kurssin.
+ */    
     public void lisaaKurssi(String nimi, String kurssikoodi, Integer opintopisteet, Taso taso, String erikoistumislinja, String kuvaus, Integer arvosana, String suoritusPvm) {
         Kurssi kurssi = new Kurssi(nimi, kurssikoodi, opintopisteet, taso, erikoistumislinja, kuvaus, arvosana, suoritusPvm);
         
@@ -90,7 +108,9 @@ public class OpintojenSeurantajarjestelma {
         this.opintokokonaisuudet.get(taso).lisaaKurssi(kurssi);
         this.tallennaOpintokokonaisuudet();
     }
-    
+ /**
+  * Metodi poistaa kurssin opiskelijan suorittamien kurssien joukosta.
+  */   
     public void poistaKurssi(String kurssikoodi) {  
         for (Taso taso : this.opintokokonaisuudet.keySet()) {
             this.opintokokonaisuudet.get(taso).poistaKurssi(kurssikoodi);
@@ -100,13 +120,19 @@ public class OpintojenSeurantajarjestelma {
     public void muutaKurssinTietoja() {
         
     }
-    
+/**
+ * Metodi palauttaa merkkijonona tiedot opiskelija-oliomuuttujan viittaamasta
+ * Opiskelija-oliosta.
+ */    
     public String tulostaOpiskelija() {
         return this.opiskelija.toString();
     }
     
 
-    
+/**
+ * Metodi laskee ja palauttaa kokonaislukuna opiskelijan suorittamien kurssien
+ * kokonaismäärän.
+ */      
     public int kaikkienKurssienLukumaara() {
         int kurssienLukumaara = 0;
         
@@ -116,7 +142,9 @@ public class OpintojenSeurantajarjestelma {
         
         return kurssienLukumaara;
     }
-    
+/**
+ * Metodi palauttaa kokonaislukuna opiskelijan suorittamien opintopisteiden yhteismäärän.
+ */      
    public int opintopisteetYhteensa() {
         int opintopisteet = 0;
         
@@ -126,7 +154,10 @@ public class OpintojenSeurantajarjestelma {
         
         return opintopisteet;
     }
-   
+/**
+ * Metodi palauttaa merkkijonona arvion opiskelijan valmistumisajankohdasta (tällä hetkellä
+ * kandidaatiksi valmistumisen ajankohdasta)
+ */     
    public String arvioValmistumisajankohdasta() {
        DateFormat df = new SimpleDateFormat("ddMMyy");
        Date opiskelijanAloitusPvm = new Date();
@@ -157,7 +188,10 @@ public class OpintojenSeurantajarjestelma {
        
        return tuloste;
    }
-   
+/**
+ * Metodi palauttaa merkkijonona lyhyen tulosteen kaikista opiskelijan suorittamista
+ * kursseista.
+ */     
    public String tulostaKurssit() {
        String tuloste = "";
        

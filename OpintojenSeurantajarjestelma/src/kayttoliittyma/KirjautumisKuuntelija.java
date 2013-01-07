@@ -6,7 +6,10 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import kayttajat.KayttajienHallinta;
 import opintojenseurantajarjestelma.OpintojenSeurantajarjestelma;
-
+/**
+ * KirjautumisKuuntelija-luokka toteuttaa KirjautumisIkkuna-luokan toiminnalisuuden.
+ * @author jhkopone
+ */
 
 public class KirjautumisKuuntelija implements ActionListener{
     private KayttajienHallinta jarjestelma;

@@ -3,7 +3,10 @@ import java.util.*;
 import kayttoliittyma.PaaIkkuna;
 import opintojenseurantajarjestelma.OpintojenSeurantajarjestelma;
 import opintojenseurantajarjestelma.Tiedostonkasittelija;
-
+/**
+ * Luokka hallinnoi Opiskelija-olioita. Luokan avulla onnistuu mm.
+ * uuden opiskelijan lisääminen, opiskelijan poisto sekä kirjautuminen.
+ */   
 public class KayttajienHallinta {
     private Tiedostonkasittelija tiedostonkasittelija;
     private List<Opiskelija> opiskelijat;
@@ -15,6 +18,11 @@ public class KayttajienHallinta {
         this.jarjestelma = jarjestelma;
         lataaKayttajat();
     }
+
+/**
+ * Metodi lataa Opiskelija-olioita sisältävän listan ja tallentaa sen opiskelijat
+ * oliomuuttujaan.
+ */    
     
     public void lataaKayttajat() {
         try {
@@ -23,7 +31,11 @@ public class KayttajienHallinta {
             
         } 
     }
-    
+
+/**
+ * Metodi tallentaa opiskelijat-oliomuuttujaan tallennetun Opiskelija-olioita sisältävän
+ * listan tiedostoon.
+ */     
     public void tallennaKayttajat() {
         try {
            this.tiedostonkasittelija.kirjoitaOpiskelijat("kayttajat.lista", this.opiskelijat); 
@@ -31,7 +43,9 @@ public class KayttajienHallinta {
             
         }
     }
-    
+/**
+ * Metodi lisää parametrina annetun Opiskelija-olion opiskelijat-oliomuuttujaan.
+ */     
     public boolean lisaaKayttaja(Opiskelija opiskelija) {
         if (this.opiskelijat == null) {
             this.opiskelijat = new ArrayList<Opiskelija>();
@@ -45,7 +59,10 @@ public class KayttajienHallinta {
         
         return false;
     }
-    
+/**
+ * Metodi poistaa parametrina annetun Opiskelija-olion opiskelijat-oliomuuttujan
+ * sisältämästä listasta.
+ */     
     public boolean poistaKayttaja(Opiskelija opiskelija) {
         if (this.opiskelijat == null || !this.opiskelijat.contains(opiskelija)) {
             return false;
@@ -55,6 +72,10 @@ public class KayttajienHallinta {
         tallennaKayttajat();
         return false;
     }
+/**
+ * Metodin avulla tarkistetaan löytyykö parametrina annettu tunnus-salasana-yhdistelmä
+ * järjestelmään tallennettujen yhdistelmien joukosta.
+ */ 
     
     public void kirjauduSisaan(String tunnus, String salasana) {
         for (Opiskelija o : this.opiskelijat) {
@@ -65,7 +86,9 @@ public class KayttajienHallinta {
             }
         }
     }
-    
+/**
+ * Metodi kirjaa käyttäjän ulos järjestelmästä. Toteutus toistaiseksi kesken.
+ */     
     public boolean kirjauduUlos() {
         return false;
     }

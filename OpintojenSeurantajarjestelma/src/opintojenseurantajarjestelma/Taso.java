@@ -7,7 +7,8 @@ package opintojenseurantajarjestelma;
 import java.io.Serializable;
 
 /**
- *
+ * Taso-luokan (lueteltu tyyppi) avulla määritellään kiinteästi
+ * järjestelmässä käytettävät opintokokonaisuudet.
  * @author jhkopone
  */
 public enum Taso implements Serializable{
@@ -24,7 +25,10 @@ public enum Taso implements Serializable{
     private Taso(Integer taso) {
         this.taso = taso;
     }
-    
+
+/**
+ * Metodi palauttaa taso-oliomuuttujan arvon.
+ */      
     public Integer getTaso() {
         return this.taso;
     }

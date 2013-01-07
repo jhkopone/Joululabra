@@ -3,7 +3,12 @@ package kayttoliittyma;
 import java.awt.*;
 import javax.swing.*;
 import opintojenseurantajarjestelma.OpintojenSeurantajarjestelma;
-
+/**
+ * KurssinLisaysIkkuna-luokan ilmentymän avulla lisätään uusi kurssi opiskelijan
+ * suoritettujen kurssien joukkoon. Toiminnallisuus toteutetaan KurssinLisaysKuuntelija-
+ * luokan avulla.
+ * @author jhkopone
+ */
 public class KurssinLisaysIkkuna implements Runnable {
     private OpintojenSeurantajarjestelma jarjestelma;
     private JFrame frame;

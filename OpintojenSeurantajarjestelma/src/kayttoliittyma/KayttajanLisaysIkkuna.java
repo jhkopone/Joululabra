@@ -6,7 +6,12 @@ package kayttoliittyma;
 import java.awt.*;
 import javax.swing.*;
 import kayttajat.KayttajienHallinta;
-
+/**
+ * KayttajanLisaysIkkuna-luokka käyttää KayttajienHallinta-luokkaa
+ * tarjoten käyttöliittymän sen toiminnoille. Varsinainen toiminnallisuus
+ * toteutetaan KayttajanLisaysKuuntelija-luokan avulla.
+ * @author jhkopone
+ */
 
 public class KayttajanLisaysIkkuna implements Runnable {
     private JFrame frame;

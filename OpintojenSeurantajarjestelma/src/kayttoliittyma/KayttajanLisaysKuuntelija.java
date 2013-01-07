@@ -6,7 +6,11 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import kayttajat.KayttajienHallinta;
 import kayttajat.Opiskelija;
-
+/**
+ * KayttajanLisaysKuuntelija-luokka toteuttaa luokan KayttajanLisaysIkkuna
+ * toiminnallisuuden.
+ * @author jhkopone
+ */
 public class KayttajanLisaysKuuntelija implements ActionListener {
     private KayttajienHallinta jarjestelma;
     

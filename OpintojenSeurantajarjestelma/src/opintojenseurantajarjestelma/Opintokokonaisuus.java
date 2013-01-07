@@ -6,19 +6,27 @@ package opintojenseurantajarjestelma;
 import java.io.Serializable;
 import java.util.*;
 /**
- *
+ *Opintokokonaisuus-luokka tallentaa yhteen kuuluvat Kurssi-luokan
+ * ilmentymät oliomuuttujaan ja tarjoaa palveluja kursseihin liittyvien
+ * tietojen esittämiseen.
  * @author jhkopone
  */
 public class Opintokokonaisuus implements Serializable{
     private Taso nimi;
     private Map<String, Kurssi> kurssit;
 
-    
+/**
+ * Opintokokonaisuus-luokan konstruktori, joka saa parametrikseen Taso-luokan
+ * ilmentymän.
+ */      
     public Opintokokonaisuus (Taso nimi) {
         this.nimi = nimi;
         this.kurssit = new HashMap<String, Kurssi>();
     }
-    
+
+/**
+ * Metodi lisää järjestelmään parametrinä saamansa kurssin.
+ */      
     public boolean lisaaKurssi (Kurssi kurssi) {
         if (!this.kurssit.containsKey(kurssi.getKurssikoodi())) {
             this.kurssit.put(kurssi.getKurssikoodi(), kurssi);
@@ -26,7 +34,11 @@ public class Opintokokonaisuus implements Serializable{
         }
         return false;
     }
-    
+
+/**
+ * Metodi poistaa järjestelmästä parametrinä saamaansa kurssikoodia vastaavan
+ * kurssin.
+ */      
     public boolean poistaKurssi(String kurssikoodi) {
         if (this.kurssit.containsKey(kurssikoodi)) {
             this.kurssit.remove(kurssikoodi);
@@ -34,7 +46,10 @@ public class Opintokokonaisuus implements Serializable{
         }
         return false;
     }
-    
+ 
+/**
+ * Metodi laskee opintokokonaisuuteen kuuluvien kurssien opintopisteet yhteen.
+ */      
     public int opintopisteetYhteensa() {
         int opintopisteet = 0;
         
@@ -44,11 +59,17 @@ public class Opintokokonaisuus implements Serializable{
         
         return opintopisteet;
     }
-    
+
+/**
+ * Metodi palauttaa kokonaislukuna opintokokonaisuuden sisältämien kurssien lukumäärän.
+ */      
     public int kurssienLukumaara() {
         return this.kurssit.size();
     }
-    
+
+/**
+ * Metodi palauttaa kokonaislukuna opintokokonaisuuden yleisarvosanan.
+ */      
     public int yleisarvosana() {
         int yleisarvosana = 0;
         
@@ -59,11 +80,16 @@ public class Opintokokonaisuus implements Serializable{
         
         return yleisarvosana / this.opintopisteetYhteensa();
     }
-    
+
+/**
+ * Metodi palauttaa nimi-oliomuuttujan arvon.
+ */      
     public Taso getNimi() {
         return this.nimi;
     }
-    
+/**
+ * Metodi palauttaa listan opintokokonaisuuden sisältämistä Kurssi-olioista.
+ */      
     public List<Kurssi> getKurssit() {
         return new ArrayList<Kurssi>(this.kurssit.values());
     }

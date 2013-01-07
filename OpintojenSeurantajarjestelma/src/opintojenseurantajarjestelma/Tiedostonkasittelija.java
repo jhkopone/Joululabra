@@ -8,7 +8,9 @@ import java.util.*;
 import kayttajat.Opiskelija;
 
 /**
- *
+ * Tiedostonkasittelija-luokka tarjoaa työkalut tiedostojen kirjoittamiseen ja
+ * lukemiseen. Tällä hetkellä luokkaa käyttävät luokat OpintojenSeurantajarjestelma
+ * sekä KayttajienHallinta.
  * @author Koppa
  */
 public class Tiedostonkasittelija {
@@ -44,7 +46,10 @@ public class Tiedostonkasittelija {
 //        this.ulos.flush();
 //        this.ulosF.close();
 //    }
-    
+/**
+ * Metodi kirjoittaa parametrina saamansa Opiskelija-olioita sisältävän listan parametrina
+ * saamaansa tiedostoon.
+ */      
     public void kirjoitaOpiskelijat(String tiedosto, List<Opiskelija> opiskelijat) throws Exception {
         this.ulosF = new FileOutputStream(tiedosto);
         this.ulos = new ObjectOutputStream(ulosF);
@@ -54,7 +59,9 @@ public class Tiedostonkasittelija {
         this.ulos.flush();
         this.ulosF.close();
     }
-    
+/**
+ * Metodi kirjoittaa parametrina saamansa Map-rajapinnan toteuttavan olion parametrina saamaansa tiedostoon.
+ */      
     public void kirjoitaOpintokokonaisuudet(String tiedosto, Map<Taso, Opintokokonaisuus> opintokokonaisuudet) throws Exception {
         this.ulosF = new FileOutputStream(tiedosto);
         this.ulos = new ObjectOutputStream(ulosF);
@@ -73,7 +80,10 @@ public class Tiedostonkasittelija {
 //
 //        return luettu;
 //    }
-    
+
+/**
+ * Metodi palauttaa parametrina saamastaan tiedostosta lukemansa Opiskelija-olioita sisältävän listan.
+ */      
     public List<Opiskelija> lueOpiskelijat(String tiedosto) throws Exception {
         this.sisaanF = new FileInputStream(tiedosto);
         this.sisaan = new ObjectInputStream(sisaanF);
@@ -82,7 +92,9 @@ public class Tiedostonkasittelija {
 
         return luettu;
     }
-    
+/**
+ * Metodi palauttaa parametrina saamastaan tiedostosta lukemansa Map-rajapinnan toteuttavan olion.
+ */      
     public Map<Taso, Opintokokonaisuus> lueOpintokokonaisuudet(String tiedosto) throws Exception {
         this.sisaanF = new FileInputStream(tiedosto);
         this.sisaan = new ObjectInputStream(sisaanF);
