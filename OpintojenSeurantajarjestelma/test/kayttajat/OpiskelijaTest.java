@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package kayttajat;
 
 import org.junit.After;
@@ -20,32 +17,53 @@ public class OpiskelijaTest {
     
     public OpiskelijaTest() {
     }
-    
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
+
     @Before
     public void setUp() {
         opiskelija = new Opiskelija("Juha", "Koponen", "007", "010101", "Juhis", "Juhis");
     }
     
-    @After
-    public void tearDown() {
-    }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
-    
     @Test
     public void konstruktoriToimii() {
-        assertEquals(this.opiskelija.toString(), "Juha Koponen 007");
+        Opiskelija uusiOpiskelija = new Opiskelija("Anni", "Opiskelija", "313", "020304", "anni", "ansku");
+        
+        assertEquals(uusiOpiskelija.toString(), "Anni Opiskelija (313) aloituspäivämäärä: 020304");
     }
+
+    @Test        
+    public void getNimiToimii() {
+        assertEquals(this.opiskelija.getNimi(), "Juha Koponen");
+    }
+
+    @Test
+    public void getOpiskelijanumeroToimii() {
+        assertEquals(this.opiskelija.getOpiskelijanumero(), "007");
+    }
+
+    @Test
+    public void getAloituspvmToimii() {
+        assertEquals(this.opiskelija.getAloituspvm(), "010101");
+    }
+
+    @Test
+    public void getTunnusToimii() {
+        assertEquals(this.opiskelija.getTunnus(), "Juhis");
+    }
+    
+    @Test
+    public void getSalasanaToimii() {
+        assertEquals(this.opiskelija.getSalasana(), "Juhis");
+    }
+    
+    @Test
+    public void setSalasanaToimii() {
+        this.opiskelija.setSalasana("salasana");
+        assertEquals(this.opiskelija.getSalasana(), "salasana");
+    }
+
+    @Test
+    public void toStringToimii() {
+        assertEquals(this.opiskelija.toString(), "Juha Koponen (007) aloituspäivämäärä: 010101");
+    }        
     
 }

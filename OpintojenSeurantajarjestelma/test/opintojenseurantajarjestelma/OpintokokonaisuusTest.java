@@ -17,24 +17,12 @@ public class OpintokokonaisuusTest {
     public OpintokokonaisuusTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         opintokokonaisuus = new Opintokokonaisuus(Taso.PERUSOPINNOT);
         kurssi1 = new Kurssi("testi1", "007",5, Taso.PERUSOPINNOT, "ei ole", "testikurssi1", 5, "001122");
         kurssi2 = new Kurssi("testi2", "008", 4, Taso.PERUSOPINNOT, "ei ole", "testikurssi2", 5, "001122");
         kurssi3 = new Kurssi("testi3", "009", 3, Taso.PERUSOPINNOT, "ei ole", "testikurssi3", 5, "001122");
-    }
-    
-    @After
-    public void tearDown() {
     }
     
     @Test
@@ -118,8 +106,4 @@ public class OpintokokonaisuusTest {
         
         assertEquals(opintokokonaisuus.kurssienLukumaara(), 3);
     }
-    
-    
-    
-    
 }

@@ -23,7 +23,7 @@ public class Paaohjelma {
         
 //        Tekstikayttoliittyma tekstikayttoliittyma = new Tekstikayttoliittyma(lukija, jarjestelma);
 //        tekstikayttoliittyma.run();
-        KayttajienHallinta hallinta = new KayttajienHallinta(jarjestelma);
+        KayttajienHallinta hallinta = new KayttajienHallinta(jarjestelma, "opiskelijat.lista");
         KirjautumisIkkuna kirjautumisIkkuna = new KirjautumisIkkuna(hallinta);
         kirjautumisIkkuna.run();
         

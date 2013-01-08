@@ -9,11 +9,12 @@ import opintojenseurantajarjestelma.Tiedostonkasittelija;
  */   
 public class KayttajienHallinta {
     private List<Opiskelija> opiskelijat;
-    
     private OpintojenSeurantajarjestelma jarjestelma;
+    private String tiedosto;
     
-    public KayttajienHallinta(OpintojenSeurantajarjestelma jarjestelma) {
+    public KayttajienHallinta(OpintojenSeurantajarjestelma jarjestelma, String tiedosto) {
         this.jarjestelma = jarjestelma;
+        this.tiedosto = tiedosto;
         lataaKayttajat();
     }
 
@@ -24,7 +25,7 @@ public class KayttajienHallinta {
     
     public void lataaKayttajat() {
         try {
-            this.opiskelijat = Tiedostonkasittelija.lueOpiskelijat("kayttajat.lista");
+            this.opiskelijat = Tiedostonkasittelija.lueOpiskelijat(this.tiedosto);
         } catch (Exception e) {
             
         } 
@@ -36,7 +37,7 @@ public class KayttajienHallinta {
  */     
     public void tallennaKayttajat() {
         try {
-           Tiedostonkasittelija.kirjoitaOpiskelijat("kayttajat.lista", this.opiskelijat); 
+           Tiedostonkasittelija.kirjoitaOpiskelijat(this.tiedosto, this.opiskelijat); 
         } catch (Exception e) {
             
         }
@@ -89,6 +90,35 @@ public class KayttajienHallinta {
  */     
     public boolean kirjauduUlos() {
         return false;
+    }
+
+/**
+ * Metodi palauttaa opiskelijat-oliomuuttujan viittaaman taulukon.
+ */       
+    public List<Opiskelija> getOpiskelijat() {
+        return this.opiskelijat;
+    }
+    
+    public void setOpiskelijat(List<Opiskelija> opiskelijaLista) {
+        this.opiskelijat = opiskelijaLista;
+    }
+    
+    public String getTiedosto() {
+        return this.tiedosto;
+    }
+    
+    public void setTiedosto(String tiedosto) {
+        this.tiedosto = tiedosto;
+    }
+    
+    public void alustaTiedosto(String tiedosto) {
+        List<Opiskelija> tyhjaLista = new ArrayList<Opiskelija>();
+        
+        try {
+            Tiedostonkasittelija.kirjoitaOpiskelijat(tiedosto, tyhjaLista);
+        } catch (Exception e) {
+            
+        }
     }
     
 }

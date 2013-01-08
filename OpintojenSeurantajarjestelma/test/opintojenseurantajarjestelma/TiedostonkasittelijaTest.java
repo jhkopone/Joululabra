@@ -13,21 +13,9 @@ public class TiedostonkasittelijaTest {
     public TiedostonkasittelijaTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         tiedostonkasittelija = new Tiedostonkasittelija();
-    }
-    
-    @After
-    public void tearDown() {
     }
     
     @Test
@@ -49,6 +37,4 @@ public class TiedostonkasittelijaTest {
     public void lueOpintokokonaisuudetToimii() {
         
     }
-    
-
 }

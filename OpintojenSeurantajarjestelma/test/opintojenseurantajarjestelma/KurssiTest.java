@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package opintojenseurantajarjestelma;
 
 import org.junit.After;
@@ -12,7 +8,6 @@ import org.junit.Test;
 import static org.junit.Assert.*;
 
 /**
- *
  * @author jhkopone
  */
 public class KurssiTest {
@@ -37,11 +32,6 @@ public class KurssiTest {
     @After
     public void tearDown() {
     }
-    // TODO add test methods here.
-    // The methods must be annotated with annotation @Test. For example:
-    //
-    // @Test
-    // public void hello() {}
     
     @Test
     public void konstruktoriToimii() {
