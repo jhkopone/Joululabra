@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package opintojenseurantajarjestelma;
 import java.io.Serializable;
 import java.util.*;
@@ -18,7 +15,8 @@ public class Kurssi implements Serializable{
     private String kuvaus;
     private Integer arvosana;
     private String suoritusPvm;
-  /**
+    
+ /**
  * Kurssi-luokan parametriton konstruktori.
  */   
     public Kurssi() {  

@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package opintojenseurantajarjestelma;
 import java.util.*;
 import java.text.*;
@@ -13,8 +10,6 @@ import kayttajat.*;
  * @author jhkopone
  */
 public class OpintojenSeurantajarjestelma {
-    private Tiedostonkasittelija tiedostonkasittelija;
-    
     private Opiskelija opiskelija;
     private Map<Taso, Opintokokonaisuus> opintokokonaisuudet;
     
@@ -23,10 +18,8 @@ public class OpintojenSeurantajarjestelma {
  * Opiskelija-luokan ilmentymän.
  */     
     public OpintojenSeurantajarjestelma(Opiskelija opiskelija) {
-        this.tiedostonkasittelija = new Tiedostonkasittelija();
-        
         this.opiskelija = opiskelija;
-        this.opintokokonaisuudet = null;
+        this.opintokokonaisuudet = new HashMap<Taso, Opintokokonaisuus>();
     }
 /**
  * Metodi asettaa opiskelija-oliomuuttujan arvoksi viitteen parametrina saamaansa
@@ -37,12 +30,7 @@ public class OpintojenSeurantajarjestelma {
     }
 
     // Getterit
-/**
- * Metodi palauttaa tiedostonkasittelija-oliomuuttujaan tallennetun viitteen.
- */     
-    public Tiedostonkasittelija getTiedostonkasittelija() {
-        return tiedostonkasittelija;
-    }
+
 /**
  * Metodi palauttaa opiskelija-oliomuuttujaan tallennetun viitteen.
  */ 
@@ -55,25 +43,24 @@ public class OpintojenSeurantajarjestelma {
  * toteuttavaan olioon.
  */     
     public Map<Taso, Opintokokonaisuus> getOpintokokonaisuudet() {
+        lataaOpintokokonaisuudet();
         return this.opintokokonaisuudet;
     }
-    
-    
-    // Tiedostonkasittely
-    
 
-    
+// Tiedostonkasittely
 
 /**
  * Metodi lataa tiedostosta (joka määräytyy opiskelija-oliomuuttujan arvon mukaan) Map-rajapinnan
  * toteuttavan olion, johon kyseisen opiskelijan suorittamat kurssit on tallennettu opintokokonaisuuksittain.
  */     
     public void lataaOpintokokonaisuudet() {
-        try {
-            this.opintokokonaisuudet = this.tiedostonkasittelija.lueOpintokokonaisuudet(this.opiskelija.getTunnus());
-        } catch (Exception e) {
-            System.out.println("ongelmia opintojen lataamisessa!");
-        } 
+        if (this.opiskelija != null) {
+            try {
+                this.opintokokonaisuudet = Tiedostonkasittelija.lueOpintokokonaisuudet(this.opiskelija.getTunnus());
+            } catch (Exception e) {
+                this.opintokokonaisuudet = new HashMap<Taso, Opintokokonaisuus>();
+            } 
+        }
     }
 /**
  * Metodi tallentaa tiedostoon (joka määräytyy opiskelija-oliomuuttujan arvon mukaan) opintokokonaisuudet-
@@ -82,14 +69,11 @@ public class OpintojenSeurantajarjestelma {
  */     
     public void tallennaOpintokokonaisuudet() {
         try {
-           this.tiedostonkasittelija.kirjoitaOpintokokonaisuudet(this.opiskelija.getTunnus(), this.opintokokonaisuudet); 
+           Tiedostonkasittelija.kirjoitaOpintokokonaisuudet(this.opiskelija.getTunnus(), this.opintokokonaisuudet); 
         } catch (Exception e) {
-            System.out.println(e);
+            System.out.println("virhe kurssien tallentamisessa!");
         }
     }
-
-
-    
 
 /**
  * Metodi lisää opiskelijan suorittamiin kursseihin uuden kurssin.
@@ -97,47 +81,49 @@ public class OpintojenSeurantajarjestelma {
     public void lisaaKurssi(String nimi, String kurssikoodi, Integer opintopisteet, Taso taso, String erikoistumislinja, String kuvaus, Integer arvosana, String suoritusPvm) {
         Kurssi kurssi = new Kurssi(nimi, kurssikoodi, opintopisteet, taso, erikoistumislinja, kuvaus, arvosana, suoritusPvm);
         
-        if (this.opintokokonaisuudet == null) {
-            this.opintokokonaisuudet = new HashMap<Taso, Opintokokonaisuus>();
-        }
+        lataaOpintokokonaisuudet();
         
         if (!this.opintokokonaisuudet.containsKey(taso)) {
             this.opintokokonaisuudet.put(taso, new Opintokokonaisuus(taso));
         }
         
         this.opintokokonaisuudet.get(taso).lisaaKurssi(kurssi);
-        this.tallennaOpintokokonaisuudet();
+        
+        tallennaOpintokokonaisuudet();
     }
  /**
   * Metodi poistaa kurssin opiskelijan suorittamien kurssien joukosta.
   */   
-    public void poistaKurssi(String kurssikoodi) {  
+    public void poistaKurssi(String kurssikoodi) {
+        lataaOpintokokonaisuudet();
+        
         for (Taso taso : this.opintokokonaisuudet.keySet()) {
             this.opintokokonaisuudet.get(taso).poistaKurssi(kurssikoodi);
         }
+        
+        tallennaOpintokokonaisuudet();
     }
     
     public void muutaKurssinTietoja() {
         
     }
-/**
- * Metodi palauttaa merkkijonona tiedot opiskelija-oliomuuttujan viittaamasta
- * Opiskelija-oliosta.
- */    
-    public String tulostaOpiskelija() {
-        return this.opiskelija.toString();
-    }
-    
+
 
 /**
  * Metodi laskee ja palauttaa kokonaislukuna opiskelijan suorittamien kurssien
  * kokonaismäärän.
  */      
     public int kaikkienKurssienLukumaara() {
+        lataaOpintokokonaisuudet();
+        
+        if (this.opintokokonaisuudet.isEmpty()) {
+            return 0;
+        }
+        
         int kurssienLukumaara = 0;
         
         for (Taso taso : this.opintokokonaisuudet.keySet()) {
-            kurssienLukumaara = kurssienLukumaara + this.opintokokonaisuudet.get(taso).kurssienLukumaara();
+            kurssienLukumaara += this.opintokokonaisuudet.get(taso).kurssienLukumaara();
         }
         
         return kurssienLukumaara;
@@ -146,15 +132,56 @@ public class OpintojenSeurantajarjestelma {
  * Metodi palauttaa kokonaislukuna opiskelijan suorittamien opintopisteiden yhteismäärän.
  */      
    public int opintopisteetYhteensa() {
-        int opintopisteet = 0;
+       lataaOpintokokonaisuudet();
+       
+       if (this.opintokokonaisuudet.isEmpty()) {
+           return 0;
+       }
+       
+       int opintopisteet = 0;
         
         for (Taso taso : this.opintokokonaisuudet.keySet()) {
-            opintopisteet = opintopisteet + this.opintokokonaisuudet.get(taso).opintopisteetYhteensa();
+            opintopisteet += this.opintokokonaisuudet.get(taso).opintopisteetYhteensa();
         }
-        
+
         return opintopisteet;
     }
+
 /**
+ * Metodi palauttaa merkkijonona lyhyen tulosteen kaikista opiskelijan suorittamista
+ * kursseista.
+ */     
+   public String tulostaKurssit() {
+       lataaOpintokokonaisuudet();
+       
+       if (this.opintokokonaisuudet.isEmpty()) {
+           return "ei suoritettuja kursseja";
+       }
+       
+       String tuloste = "";
+       tuloste += "Kursseja yhteensä: " + kaikkienKurssienLukumaara() + ", opintopisteitä yhteensä: " + opintopisteetYhteensa();
+       
+       for (Taso taso : this.opintokokonaisuudet.keySet()) {
+           tuloste += taso + "\n\n";
+           for (Kurssi kurssi : this.opintokokonaisuudet.get(taso).getKurssit()) {
+               tuloste += kurssi.lyhytTuloste() + "\n";
+           }
+           tuloste += "\n";
+       }
+       
+       tuloste += "Arvioitu valmistumisajankohta: " + arvioValmistumisajankohdasta();
+       return tuloste;
+   }
+   
+   /**
+ * Metodi palauttaa merkkijonona tiedot opiskelija-oliomuuttujan viittaamasta
+ * Opiskelija-oliosta.
+ */    
+    public String tulostaOpiskelija() {
+        return this.opiskelija.toString();
+    }
+    
+ /**
  * Metodi palauttaa merkkijonona arvion opiskelijan valmistumisajankohdasta (tällä hetkellä
  * kandidaatiksi valmistumisen ajankohdasta)
  */     
@@ -173,8 +200,15 @@ public class OpintojenSeurantajarjestelma {
        
        long erotus = nyt - aloitus;
        
-       long aikaaPerOpintopiste = erotus / opintopisteetYhteensa();
+       int opintopisteetYhteensa = opintopisteetYhteensa();
+       long aikaaPerOpintopiste = 0;
        
+       if (opintopisteetYhteensa == 0) {
+            return "valmistumisaikaa ei voida arvioida";
+       }
+       
+
+       aikaaPerOpintopiste = erotus / opintopisteetYhteensa();
        int opintopisteitaKandiksi = 180 - opintopisteetYhteensa();
        
        int opintopisteitaMaisteriksi = 300 - opintopisteetYhteensa();
@@ -188,21 +222,5 @@ public class OpintojenSeurantajarjestelma {
        
        return tuloste;
    }
-/**
- * Metodi palauttaa merkkijonona lyhyen tulosteen kaikista opiskelijan suorittamista
- * kursseista.
- */     
-   public String tulostaKurssit() {
-       String tuloste = "";
-       
-       for (Taso taso : this.opintokokonaisuudet.keySet()) {
-           for (Kurssi kurssi : this.opintokokonaisuudet.get(taso).getKurssit()) {
-               tuloste = tuloste + kurssi.lyhytTuloste();
-           }
-       }
-
-       return tuloste;
-   }
-    
     
 }

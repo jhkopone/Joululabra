@@ -24,9 +24,7 @@ public class PaaIkkuna implements Runnable {
     public void run() {
         avaaPaaikkuna();
     }
-    
 
-    
     public void avaaPaaikkuna() {
         frame = new JFrame("Opintojen seurantajärjestelmä");
         frame.setPreferredSize(new Dimension(1000,600));
@@ -41,7 +39,6 @@ public class PaaIkkuna implements Runnable {
     
     private void luoKomponentit(Container container) {
         BorderLayout layout = new BorderLayout();
-//      GridLayout layout = new GridLayout(1, 2);
         container.setLayout(layout);
         
         JLabel teksti = new JLabel("Kurssien tiedot tähän.");
@@ -52,28 +49,33 @@ public class PaaIkkuna implements Runnable {
         container.add(viestiKentta, BorderLayout.NORTH);
         container.add(luoValikko(teksti), BorderLayout.WEST);
         container.add(teksti, BorderLayout.CENTER);
-        
     }
     
     private JPanel luoValikko(JLabel teksti) {
         JPanel valikko = new JPanel(new GridLayout(6, 1));
         
         JButton tulostaOpiskelijanTiedot = new JButton("näytä opiskelijan tiedot");
+        JButton naytaKurssit = new JButton("näytä kurssit");
         JButton lisaaKurssi = new JButton("lisää kurssi");
         JButton poistaKurssi = new JButton("poista kurssi");
-        JButton naytaKurssit = new JButton("näytä kurssit");
-        
-        PaaIkkunaKuuntelija kuuntelija = new PaaIkkunaKuuntelija(this.jarjestelma, teksti);
+        JButton naytaArvosanajakauma = new JButton("näytä arvosanajakauma");
+        JButton naytaKurssitLukukausittain = new JButton("näytä kurssit lukukausittain"); 
+
+        PaaIkkunaKuuntelija kuuntelija = new PaaIkkunaKuuntelija(this.jarjestelma, teksti, tulostaOpiskelijanTiedot, naytaKurssit,lisaaKurssi, poistaKurssi, naytaArvosanajakauma, naytaKurssitLukukausittain);
         
         tulostaOpiskelijanTiedot.addActionListener(kuuntelija);
         naytaKurssit.addActionListener(kuuntelija);
+        lisaaKurssi.addActionListener(kuuntelija);
+        poistaKurssi.addActionListener(kuuntelija);
+        naytaArvosanajakauma.addActionListener(kuuntelija);
+        naytaKurssitLukukausittain.addActionListener(kuuntelija);
 
         valikko.add(tulostaOpiskelijanTiedot);
-        valikko.add(lisaaKurssi);
-        valikko.add(poistaKurssi);
         valikko.add(naytaKurssit);
-        valikko.add(new JButton("Testi5"));
-        valikko.add(new JButton("Testi6"));
+        valikko.add(lisaaKurssi);
+        valikko.add(poistaKurssi);       
+        valikko.add(naytaArvosanajakauma);
+        valikko.add(naytaKurssitLukukausittain);
         
         return valikko;
     }

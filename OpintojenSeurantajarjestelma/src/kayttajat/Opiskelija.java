@@ -54,11 +54,9 @@ public class Opiskelija implements Serializable{
     public void setSalasana(String salasana) {
         this.salasana = salasana;
     }
-    
-    
-    
+
     @Override
     public String toString() {
-        return this.getNimi() + " " + this.opiskelijanumero + "aloituspäivämäärä: " + this.aloituspvm;
+        return this.getNimi() + " (" + this.opiskelijanumero + ") aloituspäivämäärä: " + this.aloituspvm;
     }
 }

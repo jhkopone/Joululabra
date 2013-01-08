@@ -8,13 +8,11 @@ import opintojenseurantajarjestelma.Tiedostonkasittelija;
  * uuden opiskelijan lisääminen, opiskelijan poisto sekä kirjautuminen.
  */   
 public class KayttajienHallinta {
-    private Tiedostonkasittelija tiedostonkasittelija;
     private List<Opiskelija> opiskelijat;
     
     private OpintojenSeurantajarjestelma jarjestelma;
     
     public KayttajienHallinta(OpintojenSeurantajarjestelma jarjestelma) {
-        this.tiedostonkasittelija = new Tiedostonkasittelija();
         this.jarjestelma = jarjestelma;
         lataaKayttajat();
     }
@@ -26,7 +24,7 @@ public class KayttajienHallinta {
     
     public void lataaKayttajat() {
         try {
-            this.opiskelijat = this.tiedostonkasittelija.lueOpiskelijat("kayttajat.lista");
+            this.opiskelijat = Tiedostonkasittelija.lueOpiskelijat("kayttajat.lista");
         } catch (Exception e) {
             
         } 
@@ -38,7 +36,7 @@ public class KayttajienHallinta {
  */     
     public void tallennaKayttajat() {
         try {
-           this.tiedostonkasittelija.kirjoitaOpiskelijat("kayttajat.lista", this.opiskelijat); 
+           Tiedostonkasittelija.kirjoitaOpiskelijat("kayttajat.lista", this.opiskelijat); 
         } catch (Exception e) {
             
         }

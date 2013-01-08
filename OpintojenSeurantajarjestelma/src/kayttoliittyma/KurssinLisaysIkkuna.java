@@ -12,13 +12,17 @@ import opintojenseurantajarjestelma.OpintojenSeurantajarjestelma;
 public class KurssinLisaysIkkuna implements Runnable {
     private OpintojenSeurantajarjestelma jarjestelma;
     private JFrame frame;
+    
+    public KurssinLisaysIkkuna(OpintojenSeurantajarjestelma jarjestelma) {
+        this.jarjestelma = jarjestelma;
+    }
 
     @Override
     public void run() {
-        frame = new JFrame("Lisää uusi käyttäjä");
-        frame.setPreferredSize(new Dimension(400,300));
+        frame = new JFrame("Lisää uusi kurssi");
+        frame.setPreferredSize(new Dimension(800,400));
         
-        frame.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         
         luoKomponentit(frame.getContentPane());
         
@@ -33,9 +37,7 @@ public class KurssinLisaysIkkuna implements Runnable {
         viestiKentta.setEnabled(false);
         
         JPanel paneeli = new JPanel(new GridLayout(6, 2));
-        
-      //  String nimi, String kurssikoodi, Integer opintopisteet, Taso taso, String erikoistumislinja, String kuvaus, Integer arvosana, String suoritusPvm
-        
+          
         JLabel nimiTeksti = new JLabel("kurssin nimi: ");
         JTextField nimiKentta = new JTextField();
         
@@ -82,7 +84,13 @@ public class KurssinLisaysIkkuna implements Runnable {
         paneeli.add(opintopisteetTeksti);
         paneeli.add(opintopisteetKentta);
         paneeli.add(tasoTeksti);
-//        paneeli.add(valintanapit);
+        paneeli.add(perus);
+        paneeli.add(aine);
+        paneeli.add(syventava);
+        paneeli.add(jatko);
+        paneeli.add(muut);
+        paneeli.add(kieli);
+        paneeli.add(tvt);
         paneeli.add(erikoistumislinjaTeksti);
         paneeli.add(erikoistumislinjaKentta);
         paneeli.add(kuvausTeksti);
@@ -100,9 +108,16 @@ public class KurssinLisaysIkkuna implements Runnable {
         napit.add(lisaa);
         napit.add(peruuta);
         
-//        KurssinLisaysKuuntelija kuuntelija = new KurssinLisaysKuuntelija(this.jarjestelma, etunimiKentta, sukunimiKentta, opiskelijanumeroKentta, aloitusPvmKentta, tunnusKentta, salasanaKentta, lisaa, peruuta);
-//        lisaa.addActionListener(kuuntelija);
-//        peruuta.addActionListener(kuuntelija);
+        KurssinLisaysKuuntelija kuuntelija = new KurssinLisaysKuuntelija(this.jarjestelma, nimiKentta, kurssikoodiKentta, opintopisteetKentta, perus, aine, syventava, jatko, muut, kieli, tvt, erikoistumislinjaKentta, kuvausKentta, arvosanaKentta, suoritusPvmKentta, lisaa, peruuta);
+        lisaa.addActionListener(kuuntelija);
+        peruuta.addActionListener(kuuntelija);
+        perus.addActionListener(kuuntelija);
+        aine.addActionListener(kuuntelija);
+        syventava.addActionListener(kuuntelija);
+        jatko.addActionListener(kuuntelija);
+        muut.addActionListener(kuuntelija);
+        kieli.addActionListener(kuuntelija);
+        tvt.addActionListener(kuuntelija);
         
         container.add(viestiKentta, BorderLayout.NORTH);
         container.add(paneeli, BorderLayout.CENTER);

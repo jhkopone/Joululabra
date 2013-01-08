@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package opintojenseurantajarjestelma;
 import java.io.*;
 import java.util.*;
@@ -14,79 +11,38 @@ import kayttajat.Opiskelija;
  * @author Koppa
  */
 public class Tiedostonkasittelija {
-    
-    private FileOutputStream ulosF;
-    private ObjectOutputStream ulos;
-    
-    private FileInputStream sisaanF;
-    private ObjectInputStream sisaan;
-    
-    private File tiedosto;
-    private Scanner lukija;
-    private FileWriter kirjoittaja;
-    
-    public Tiedostonkasittelija() {  
-    }
-    
-//    public void kirjoita(String tiedosto, List<String> teksti) throws Exception {
-//        this.kirjoittaja = new FileWriter(tiedosto);
-//        
-//        for (String kirjoitettava : teksti) {
-//            this.kirjoittaja.write(kirjoitettava);
-//        }
-//        this.kirjoittaja.close();
-//    }
-    
-//    public void kirjoita(String tiedosto, List<Object> teksti) throws Exception {
-//        this.ulosF = new FileOutputStream(tiedosto);
-//        this.ulos = new ObjectOutputStream(ulosF);
-//        
-//        this.ulos.writeObject(teksti);
-//        
-//        this.ulos.flush();
-//        this.ulosF.close();
-//    }
+
 /**
  * Metodi kirjoittaa parametrina saamansa Opiskelija-olioita sisältävän listan parametrina
  * saamaansa tiedostoon.
  */      
-    public void kirjoitaOpiskelijat(String tiedosto, List<Opiskelija> opiskelijat) throws Exception {
-        this.ulosF = new FileOutputStream(tiedosto);
-        this.ulos = new ObjectOutputStream(ulosF);
+    public static void kirjoitaOpiskelijat(String tiedosto, List<Opiskelija> opiskelijat) throws Exception {
+        FileOutputStream ulosF = new FileOutputStream(tiedosto);
+        ObjectOutputStream ulos = new ObjectOutputStream(ulosF);
         
-        this.ulos.writeObject(opiskelijat);
+        ulos.writeObject(opiskelijat);
         
-        this.ulos.flush();
-        this.ulosF.close();
+        ulos.flush();
+        ulosF.close();
     }
 /**
  * Metodi kirjoittaa parametrina saamansa Map-rajapinnan toteuttavan olion parametrina saamaansa tiedostoon.
  */      
-    public void kirjoitaOpintokokonaisuudet(String tiedosto, Map<Taso, Opintokokonaisuus> opintokokonaisuudet) throws Exception {
-        this.ulosF = new FileOutputStream(tiedosto);
-        this.ulos = new ObjectOutputStream(ulosF);
+    public static void kirjoitaOpintokokonaisuudet(String tiedosto, Map<Taso, Opintokokonaisuus> opintokokonaisuudet) throws Exception {
+        FileOutputStream ulosF = new FileOutputStream(tiedosto);
+        ObjectOutputStream ulos = new ObjectOutputStream(ulosF);
         
-        this.ulos.writeObject(opintokokonaisuudet);
+        ulos.writeObject(opintokokonaisuudet);
         
-        this.ulos.flush();
-        this.ulosF.close();
+        ulos.flush();
+        ulosF.close();
     }
-    
-//    public List<Object> lue(String tiedosto) throws Exception {
-//        this.sisaanF = new FileInputStream(tiedosto);
-//        this.sisaan = new ObjectInputStream(sisaanF);
-//        
-//        List<Object> luettu = (List<Object>)sisaan.readObject();
-//
-//        return luettu;
-//    }
-
 /**
  * Metodi palauttaa parametrina saamastaan tiedostosta lukemansa Opiskelija-olioita sisältävän listan.
  */      
-    public List<Opiskelija> lueOpiskelijat(String tiedosto) throws Exception {
-        this.sisaanF = new FileInputStream(tiedosto);
-        this.sisaan = new ObjectInputStream(sisaanF);
+    public static List<Opiskelija> lueOpiskelijat(String tiedosto) throws Exception {
+        FileInputStream sisaanF = new FileInputStream(tiedosto);
+        ObjectInputStream sisaan = new ObjectInputStream(sisaanF);
         
         List<Opiskelija> luettu = (List<Opiskelija>)sisaan.readObject();
 
@@ -95,11 +51,18 @@ public class Tiedostonkasittelija {
 /**
  * Metodi palauttaa parametrina saamastaan tiedostosta lukemansa Map-rajapinnan toteuttavan olion.
  */      
-    public Map<Taso, Opintokokonaisuus> lueOpintokokonaisuudet(String tiedosto) throws Exception {
-        this.sisaanF = new FileInputStream(tiedosto);
-        this.sisaan = new ObjectInputStream(sisaanF);
+    public static Map<Taso, Opintokokonaisuus> lueOpintokokonaisuudet(String tiedosto) throws Exception {
+        FileInputStream sisaanF = new FileInputStream(tiedosto);
+        ObjectInputStream sisaan = new ObjectInputStream(sisaanF);
         
-        Map<Taso, Opintokokonaisuus> luettu = (Map<Taso, Opintokokonaisuus>)sisaan.readObject();
+        Map<Taso, Opintokokonaisuus> luettu = null;
+        
+        try {
+            luettu = (Map<Taso, Opintokokonaisuus>)sisaan.readObject();
+        } catch (Exception e){
+            luettu = new HashMap<Taso, Opintokokonaisuus>();
+        }
+        
 
         return luettu;
     }

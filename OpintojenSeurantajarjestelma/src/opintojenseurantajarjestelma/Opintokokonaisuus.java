@@ -1,7 +1,4 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package opintojenseurantajarjestelma;
 import java.io.Serializable;
 import java.util.*;
@@ -75,7 +72,7 @@ public class Opintokokonaisuus implements Serializable{
         
         
         for (Kurssi kurssi : this.kurssit.values()) {
-            yleisarvosana = yleisarvosana + (kurssi.getArvosana() * kurssi.getOpintopisteet());
+            yleisarvosana += (kurssi.getArvosana() * kurssi.getOpintopisteet());
         }
         
         return yleisarvosana / this.opintopisteetYhteensa();
