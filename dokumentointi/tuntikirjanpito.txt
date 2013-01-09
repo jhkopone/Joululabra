@@ -34,3 +34,7 @@ dokumentoinnin saattaminen ajantasalle 	3.0h
 8.1.2012
 ohjelmointi 5.0h
 testien kirjoittaminen 2.0h
+
+9.1.2012
+ohjelmointi 4.5h (käyttöliittymä)
+testien kirjoittaminen 2.0h

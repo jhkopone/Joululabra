@@ -11,7 +11,11 @@ public class KayttajienHallinta {
     private List<Opiskelija> opiskelijat;
     private OpintojenSeurantajarjestelma jarjestelma;
     private String tiedosto;
-    
+/**
+ * KayttajienHallinta-luokan konstruktori
+ * @param jarjestelma OpintojenSeurantajarjestelma -luokan ilmentymä
+ * @param tiedosto tiedoston nimi, johon käyttäjät tallennetaan.
+ */    
     public KayttajienHallinta(OpintojenSeurantajarjestelma jarjestelma, String tiedosto) {
         this.jarjestelma = jarjestelma;
         this.tiedosto = tiedosto;
@@ -21,8 +25,7 @@ public class KayttajienHallinta {
 /**
  * Metodi lataa Opiskelija-olioita sisältävän listan ja tallentaa sen opiskelijat
  * oliomuuttujaan.
- */    
-    
+ */          
     public void lataaKayttajat() {
         try {
             this.opiskelijat = Tiedostonkasittelija.lueOpiskelijat(this.tiedosto);
@@ -44,7 +47,9 @@ public class KayttajienHallinta {
     }
 /**
  * Metodi lisää parametrina annetun Opiskelija-olion opiskelijat-oliomuuttujaan.
- */     
+ * @param opiskelija lisättävä käyttäjä
+ * @return metodi palauttaa boolean arvon true jos lisääminen onnistuu, muutoin false.
+ */    
     public boolean lisaaKayttaja(Opiskelija opiskelija) {
         if (this.opiskelijat == null) {
             this.opiskelijat = new ArrayList<Opiskelija>();
@@ -61,7 +66,9 @@ public class KayttajienHallinta {
 /**
  * Metodi poistaa parametrina annetun Opiskelija-olion opiskelijat-oliomuuttujan
  * sisältämästä listasta.
- */     
+ * @param opiskelija poistettava käyttäjä
+ * @return metodi palauttaa boolean arvon true jos poisto onnistuu, muutoin false.
+ */    
     public boolean poistaKayttaja(Opiskelija opiskelija) {
         if (this.opiskelijat == null || !this.opiskelijat.contains(opiskelija)) {
             return false;
@@ -74,6 +81,8 @@ public class KayttajienHallinta {
 /**
  * Metodin avulla tarkistetaan löytyykö parametrina annettu tunnus-salasana-yhdistelmä
  * järjestelmään tallennettujen yhdistelmien joukosta.
+ * @param tunnus käyttäjän antama syöte
+ * @param salasana käyttäjän antama syöte
  */ 
     
     public void kirjauduSisaan(String tunnus, String salasana) {
@@ -87,14 +96,12 @@ public class KayttajienHallinta {
     }
 /**
  * Metodi kirjaa käyttäjän ulos järjestelmästä. Toteutus toistaiseksi kesken.
- */     
+ * @return 
+ */   
     public boolean kirjauduUlos() {
         return false;
     }
-
-/**
- * Metodi palauttaa opiskelijat-oliomuuttujan viittaaman taulukon.
- */       
+    
     public List<Opiskelija> getOpiskelijat() {
         return this.opiskelijat;
     }
@@ -110,7 +117,10 @@ public class KayttajienHallinta {
     public void setTiedosto(String tiedosto) {
         this.tiedosto = tiedosto;
     }
-    
+/**
+ * Metodi tallentaa tyhjän listan parametrina saamaansa tiedostoon.
+ * @param tiedosto alustettavan tiedoston nimi.
+ */    
     public void alustaTiedosto(String tiedosto) {
         List<Opiskelija> tyhjaLista = new ArrayList<Opiskelija>();
         

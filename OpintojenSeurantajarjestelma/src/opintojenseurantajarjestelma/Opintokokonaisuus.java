@@ -1,9 +1,8 @@
-
 package opintojenseurantajarjestelma;
 import java.io.Serializable;
 import java.util.*;
 /**
- *Opintokokonaisuus-luokka tallentaa yhteen kuuluvat Kurssi-luokan
+ * Opintokokonaisuus-luokka tallentaa yhteenkuuluvat Kurssi-luokan
  * ilmentymät oliomuuttujaan ja tarjoaa palveluja kursseihin liittyvien
  * tietojen esittämiseen.
  * @author jhkopone
@@ -15,7 +14,8 @@ public class Opintokokonaisuus implements Serializable{
 /**
  * Opintokokonaisuus-luokan konstruktori, joka saa parametrikseen Taso-luokan
  * ilmentymän.
- */      
+ * @param nimi Taso-luokan ilmentymä
+ */    
     public Opintokokonaisuus (Taso nimi) {
         this.nimi = nimi;
         this.kurssit = new HashMap<String, Kurssi>();
@@ -23,7 +23,9 @@ public class Opintokokonaisuus implements Serializable{
 
 /**
  * Metodi lisää järjestelmään parametrinä saamansa kurssin.
- */      
+ * @param kurssi lisättävä kurssi
+ * @return boolean arvo true jos lisääminen onnistuu, muutoin false
+ */   
     public boolean lisaaKurssi (Kurssi kurssi) {
         if (!this.kurssit.containsKey(kurssi.getKurssikoodi())) {
             this.kurssit.put(kurssi.getKurssikoodi(), kurssi);
@@ -35,7 +37,9 @@ public class Opintokokonaisuus implements Serializable{
 /**
  * Metodi poistaa järjestelmästä parametrinä saamaansa kurssikoodia vastaavan
  * kurssin.
- */      
+ * @param kurssikoodi käyttäjän syöte
+ * @return boolean arvo true jos poisto onnistuu, muutoin false
+ */     
     public boolean poistaKurssi(String kurssikoodi) {
         if (this.kurssit.containsKey(kurssikoodi)) {
             this.kurssit.remove(kurssikoodi);
@@ -46,7 +50,8 @@ public class Opintokokonaisuus implements Serializable{
  
 /**
  * Metodi laskee opintokokonaisuuteen kuuluvien kurssien opintopisteet yhteen.
- */      
+ * @return opintopisteiden yhteismäärä
+ */     
     public int opintopisteetYhteensa() {
         int opintopisteet = 0;
         
@@ -59,14 +64,16 @@ public class Opintokokonaisuus implements Serializable{
 
 /**
  * Metodi palauttaa kokonaislukuna opintokokonaisuuden sisältämien kurssien lukumäärän.
- */      
+ * @return kurssien yhteismäärä
+ */    
     public int kurssienLukumaara() {
         return this.kurssit.size();
     }
 
 /**
  * Metodi palauttaa kokonaislukuna opintokokonaisuuden yleisarvosanan.
- */      
+ * @return opintopistemäärillä painotettu keskiarvo opintokokonaisuuden arvosanoista
+ */     
     public int yleisarvosana() {
         int yleisarvosana = 0;
         

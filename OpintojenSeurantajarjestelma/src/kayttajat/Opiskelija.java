@@ -18,9 +18,15 @@ public class Opiskelija implements Serializable{
     private String tunnus;
     private String salasana;
 
-/**    
-* Opiskelija-luokan konstruktori.    
-*/    
+/**
+ * Opiskelija-luokan konstruktori.
+ * @param etunimi 
+ * @param sukunimi
+ * @param opiskelijanumero
+ * @param aloituspvm
+ * @param tunnus
+ * @param salasana 
+ */  
     public Opiskelija(String etunimi, String sukunimi, String opiskelijanumero, String aloituspvm, String tunnus, String salasana) {
         this.etunimi = etunimi;
         this.sukunimi = sukunimi;
@@ -31,6 +37,7 @@ public class Opiskelija implements Serializable{
         this.salasana = salasana;
     }
 
+    
     public String getNimi() {
         return this.etunimi + " " + this.sukunimi;
     }
@@ -54,7 +61,10 @@ public class Opiskelija implements Serializable{
     public void setSalasana(String salasana) {
         this.salasana = salasana;
     }
-
+/**
+ * Opiskelija-luoka toString()-metodi
+ * @return metodi palauttaa opiskelijan nimen kokonaisuudessaan sekä aloituspäivämäärän.
+ */
     @Override
     public String toString() {
         return this.getNimi() + " (" + this.opiskelijanumero + ") aloituspäivämäärä: " + this.aloituspvm;

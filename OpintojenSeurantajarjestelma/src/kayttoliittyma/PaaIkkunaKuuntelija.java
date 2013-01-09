@@ -50,6 +50,8 @@ public class PaaIkkunaKuuntelija implements ActionListener {
         } else if (ae.getSource() == this.poistaOmatTiedot) {
             KayttajanPoistoIkkunaJaKuuntelija kayttajanPoisto = new KayttajanPoistoIkkunaJaKuuntelija(this.jarjestelma);
             kayttajanPoisto.run();
+        } else if (ae.getSource() == this.naytaArvosanajakauma) {
+            this.tekstikentta.setText(this.jarjestelma.tulostaArvosanajakaumaTahtina());
         }
         
     }

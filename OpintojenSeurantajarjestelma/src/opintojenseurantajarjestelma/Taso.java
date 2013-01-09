@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package opintojenseurantajarjestelma;
 
 import java.io.Serializable;
@@ -19,15 +15,21 @@ public enum Taso implements Serializable{
     MUUT_OPINNOT(5), 
     KIELIOPINNOT(6), 
     TVT_OPINNOT(7);
+
     
     private Integer taso;
     
+/**
+ * Taso-luokan konstruktori
+ * @param taso saa parametrikseen kokonaisluvun
+ */        
     private Taso(Integer taso) {
         this.taso = taso;
     }
 
 /**
  * Metodi palauttaa taso-oliomuuttujan arvon.
+ * @return taso-oliomuuttujan arvo
  */      
     public Integer getTaso() {
         return this.taso;

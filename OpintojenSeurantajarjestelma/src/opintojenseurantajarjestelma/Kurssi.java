@@ -24,7 +24,15 @@ public class Kurssi implements Serializable{
   
 /**
  * Kurssi-luokan parametrillinen konstruktori. Kaikkien kahdeksan oliomuuttujan arvot on annettava.
- */     
+ * @param nimi
+ * @param kurssikoodi
+ * @param opintopisteet
+ * @param taso
+ * @param erikoistumislinja
+ * @param kuvaus
+ * @param arvosana
+ * @param suoritusPvm 
+ */   
     public Kurssi (String nimi, String kurssikoodi, Integer opintopisteet, Taso taso, String erikoistumislinja, String kuvaus, Integer arvosana, String suoritusPvm) {
         this.nimi = nimi;
         this.kurssikoodi = kurssikoodi;
@@ -70,8 +78,6 @@ public class Kurssi implements Serializable{
         this.suoritusPvm = suoritusPvm;
     }
     
-    
-
     // getterit
 
     public String getNimi() {
@@ -106,8 +112,6 @@ public class Kurssi implements Serializable{
         return suoritusPvm;
     }
     
-    
-    
     @Override
     public String toString() {
         return this.nimi + ", " + this.opintopisteet + " op" + " (" + this.kurssikoodi + ")\n"
@@ -117,7 +121,8 @@ public class Kurssi implements Serializable{
 
 /**
  * Metodin avulla luodaan käytännöllisen pituinen yhteenveto Kurssi-olion sisältämistä tiedoista.
- */     
+ * @return merkkijono sisältää kurssin nimen ja kurssikoodin muodossa: nimi (kurssikoodi) 
+ */   
     public String lyhytTuloste() {
         return this.nimi + " (" + this.kurssikoodi + ")";
     }

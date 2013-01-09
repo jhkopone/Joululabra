@@ -1,4 +1,3 @@
-
 package opintojenseurantajarjestelma;
 import java.io.*;
 import java.util.*;
@@ -15,7 +14,10 @@ public class Tiedostonkasittelija {
 /**
  * Metodi kirjoittaa parametrina saamansa Opiskelija-olioita sisältävän listan parametrina
  * saamaansa tiedostoon.
- */      
+ * @param tiedosto tiedoston nimi, johon lista kirjoitetaan.
+ * @param opiskelijat lista Opiskelija-luokan ilmentymiä
+ * @throws Exception 
+ */     
     public static void kirjoitaOpiskelijat(String tiedosto, List<Opiskelija> opiskelijat) throws Exception {
         FileOutputStream ulosF = new FileOutputStream(tiedosto);
         ObjectOutputStream ulos = new ObjectOutputStream(ulosF);
@@ -27,7 +29,10 @@ public class Tiedostonkasittelija {
     }
 /**
  * Metodi kirjoittaa parametrina saamansa Map-rajapinnan toteuttavan olion parametrina saamaansa tiedostoon.
- */      
+ * @param tiedosto tiedoston nimi, johon Map-olio kirjoitetaan.
+ * @param opintokokonaisuudet kirjoitettava olio.
+ * @throws Exception 
+ */    
     public static void kirjoitaOpintokokonaisuudet(String tiedosto, Map<Taso, Opintokokonaisuus> opintokokonaisuudet) throws Exception {
         FileOutputStream ulosF = new FileOutputStream(tiedosto);
         ObjectOutputStream ulos = new ObjectOutputStream(ulosF);
@@ -39,7 +44,10 @@ public class Tiedostonkasittelija {
     }
 /**
  * Metodi palauttaa parametrina saamastaan tiedostosta lukemansa Opiskelija-olioita sisältävän listan.
- */      
+ * @param tiedosto tiedoston nimi, josta lista luetaan.
+ * @return lista Opiskelija-luokan ilmentymiä
+ * @throws Exception 
+ */     
     public static List<Opiskelija> lueOpiskelijat(String tiedosto) throws Exception {
         FileInputStream sisaanF = new FileInputStream(tiedosto);
         ObjectInputStream sisaan = new ObjectInputStream(sisaanF);
@@ -50,7 +58,10 @@ public class Tiedostonkasittelija {
     }
 /**
  * Metodi palauttaa parametrina saamastaan tiedostosta lukemansa Map-rajapinnan toteuttavan olion.
- */      
+ * @param tiedosto tiedoston nimi, josta Map-olio luetaan.
+ * @return luettu olio
+ * @throws Exception 
+ */     
     public static Map<Taso, Opintokokonaisuus> lueOpintokokonaisuudet(String tiedosto) throws Exception {
         FileInputStream sisaanF = new FileInputStream(tiedosto);
         ObjectInputStream sisaan = new ObjectInputStream(sisaanF);

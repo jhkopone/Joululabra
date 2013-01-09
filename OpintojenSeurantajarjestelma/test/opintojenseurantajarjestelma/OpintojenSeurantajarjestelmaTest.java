@@ -22,8 +22,7 @@ public class OpintojenSeurantajarjestelmaTest {
     
     @Test
     public void konstruktoriToimii() {
-        assertEquals(this.jarjestelma.getOpiskelija(), null);
-        assertEquals(this.jarjestelma.getOpintokokonaisuudet(), null);
+        assertEquals(this.jarjestelma.tulostaOpiskelija(), "Juha Koponen (007) aloituspäivämäärä: 010101");
     }
 
     @Test
@@ -36,6 +35,7 @@ public class OpintojenSeurantajarjestelmaTest {
         jarjestelma.lisaaKurssi("OHPE", "007", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
         
         assertEquals(jarjestelma.kaikkienKurssienLukumaara(), 1);
+        this.jarjestelma.alustaTiedosto("Juhis");
     }
     
     @Test
@@ -45,6 +45,7 @@ public class OpintojenSeurantajarjestelmaTest {
         jarjestelma.lisaaKurssi("OHPE3", "009", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
         
         assertEquals(jarjestelma.kaikkienKurssienLukumaara(), 3);
+        this.jarjestelma.alustaTiedosto("Juhis");
     }
     
     @Test
@@ -53,6 +54,7 @@ public class OpintojenSeurantajarjestelmaTest {
         jarjestelma.poistaKurssi("007");
         
         assertEquals(jarjestelma.kaikkienKurssienLukumaara(), 0);
+        this.jarjestelma.alustaTiedosto("Juhis");
     }
     
     @Test
@@ -64,6 +66,7 @@ public class OpintojenSeurantajarjestelmaTest {
         jarjestelma.poistaKurssi("008");
         
         assertEquals(jarjestelma.kaikkienKurssienLukumaara(), 2);
+        this.jarjestelma.alustaTiedosto("Juhis");
     }
     
     @Test
@@ -71,6 +74,7 @@ public class OpintojenSeurantajarjestelmaTest {
         jarjestelma.lisaaKurssi("OHPE", "007", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
         
         assertEquals(jarjestelma.kaikkienKurssienLukumaara(), 1);
+        this.jarjestelma.alustaTiedosto("Juhis");
     }
     
     @Test
@@ -80,6 +84,7 @@ public class OpintojenSeurantajarjestelmaTest {
         jarjestelma.lisaaKurssi("OHPE3", "009", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
         
         assertEquals(jarjestelma.kaikkienKurssienLukumaara(), 3);
+        this.jarjestelma.alustaTiedosto("Juhis");
     }
 
     @Test
@@ -87,6 +92,7 @@ public class OpintojenSeurantajarjestelmaTest {
         jarjestelma.lisaaKurssi("OHPE", "007", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
         
         assertEquals(jarjestelma.opintopisteetYhteensa(), 5);
+        this.jarjestelma.alustaTiedosto("Juhis");
     }
     
     @Test
@@ -96,12 +102,15 @@ public class OpintojenSeurantajarjestelmaTest {
         jarjestelma.lisaaKurssi("OHPE3", "009", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
         
         assertEquals(jarjestelma.opintopisteetYhteensa(), 15);
+        this.jarjestelma.alustaTiedosto("Juhis");
     }
     
     @Test
     public void arvioValmistumisajankohdastaToimii() {
         
     }
+    
+
     
     
     
