@@ -15,21 +15,9 @@ public class OpintojenSeurantajarjestelmaTest {
     public OpintojenSeurantajarjestelmaTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         jarjestelma = new OpintojenSeurantajarjestelma(new Opiskelija("Juha", "Koponen", "007", "010101", "Juhis", "Juhis"));
-    }
-    
-    @After
-    public void tearDown() {
     }
     
     @Test
@@ -37,47 +25,10 @@ public class OpintojenSeurantajarjestelmaTest {
         assertEquals(this.jarjestelma.getOpiskelija(), null);
         assertEquals(this.jarjestelma.getOpintokokonaisuudet(), null);
     }
-    
-    @Test
-    public void lisaaOpiskelijaLisaaOpiskelijan() {
-//        jarjestelma.lisaaOpiskelija("Juha", "Koponen", "007", "010101", "Juhis", "Juhis");
-//        
-//        assertEquals(jarjestelma.getOpiskelijat().size(), 1);
-    }
-    
-    @Test
-    public void useammanOpiskelijanLisaaminenToimii() {
-//        jarjestelma.lisaaOpiskelija("Juha1", "Koponen1", "007", "010101", "Juhis1", "Juhis1");
-//        jarjestelma.lisaaOpiskelija("Juha2", "Koponen2", "008", "010101", "Juhis2", "Juhis2");
-//        jarjestelma.lisaaOpiskelija("Juha3", "Koponen3", "009", "010101", "Juhis3", "Juhis3");
-//        
-//        assertEquals(jarjestelma.getOpiskelijat().size(), 3);
-    }
-    
-    @Test
-    public void poistaOpiskelijaToimiiYhdellaOpiskelijalla() {
-//        jarjestelma.lisaaOpiskelija("Juha", "Koponen", "007", "010101", "Juhis", "Juhis");
-//        jarjestelma.poistaOpiskelija();
-//        
-//        assertEquals(jarjestelma.getOpiskelijat().size(), 0);
-    }
-    
-    @Test
-    public void poistaOpiskelijaToimiiUseammallaOpiskelijalla() {
-//        jarjestelma.lisaaOpiskelija("Juha1", "Koponen1", "007", "010101", "Juhis1", "Juhis1");
-//        jarjestelma.lisaaOpiskelija("Juha2", "Koponen2", "008", "010101", "Juhis2", "Juhis2");
-//        jarjestelma.lisaaOpiskelija("Juha3", "Koponen3", "009", "010101", "Juhis3", "Juhis3");
-//        
-//        jarjestelma.poistaOpiskelija();
-//        
-//        assertEquals(jarjestelma.getOpiskelijat().size(), 2);
-    }
-    
+
     @Test
     public void tulostaOpiskelijaToimii() {
-//        jarjestelma.lisaaOpiskelija("Juha", "Koponen", "007", "010101", "Juhis", "Juhis");
-//        
-//        assertEquals(jarjestelma.tulostaOpiskelija(), "Juha Koponen 007");
+        assertEquals(jarjestelma.tulostaOpiskelija(), "Juha Koponen (007) aloituspäivämäärä: 010101");
     }
     
     @Test
@@ -130,21 +81,7 @@ public class OpintojenSeurantajarjestelmaTest {
         
         assertEquals(jarjestelma.kaikkienKurssienLukumaara(), 3);
     }
-    
-    @Test
-    public void kirjautuminenPalauttaaTrueKunTiedotOikein() {
-//        jarjestelma.lisaaOpiskelija("Juha", "Koponen", "007", "010101", "Juhis", "Juhis");
-//        
-//        assertEquals(jarjestelma.kirjaudu("Juhis", "Juhis"), true);
-    }
-    
-    @Test
-    public void kirjautuminenPalauttaaFalseKunTiedotVaarin() {
-//        jarjestelma.lisaaOpiskelija("Juha", "Koponen", "007", "010101", "Juhis", "Juhis");
-//        
-//        assertEquals(jarjestelma.kirjaudu("Juhis", "Juha"), false);
-    }
-    
+
     @Test
     public void opintopisteidenLaskentaToimiiYhdellaKurssilla() {
         jarjestelma.lisaaKurssi("OHPE", "007", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");

@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
 import javax.swing.JTextField;
@@ -34,6 +35,7 @@ public class KurssinLisaysKuuntelija implements ActionListener {
     private JTextField suoritusPvmKentta;
     private JButton lisaa;
     private JButton peruuta;
+    private JFrame frame;
     
     private Taso taso;
     
@@ -54,7 +56,8 @@ public class KurssinLisaysKuuntelija implements ActionListener {
     JTextField arvosanaKentta,
     JTextField suoritusPvmKentta,
     JButton lisaa,
-    JButton peruuta) {
+    JButton peruuta,
+    JFrame frame) {
         this.jarjestelma = jarjestelma;
         this.nimiKentta = nimiKentta;
         this.kurssikoodiKentta = kurssikoodiKentta;
@@ -72,6 +75,7 @@ public class KurssinLisaysKuuntelija implements ActionListener {
         this.suoritusPvmKentta = suoritusPvmKentta;
         this.lisaa = lisaa;
         this.peruuta = peruuta;
+        this.frame = frame;
     }
 
     @Override
@@ -88,7 +92,7 @@ public class KurssinLisaysKuuntelija implements ActionListener {
                 this.suoritusPvmKentta.getText()
              );
         } else if (ae.getSource() == this.peruuta) {
-            
+            this.frame.dispose();
         } else if (ae.getSource() == this.perus) {
             this.taso = Taso.PERUSOPINNOT;
         } else if (ae.getSource() == this.aine) {

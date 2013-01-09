@@ -20,10 +20,6 @@ public class TasoTest {
     public void setUp() {
         taso = Taso.PERUSOPINNOT;
     }
-    
-    @After
-    public void tearDown() {
-    }
 
     @Test
     public void konstruktoriToimii() {

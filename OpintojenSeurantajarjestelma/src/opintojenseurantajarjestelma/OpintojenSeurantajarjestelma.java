@@ -159,10 +159,10 @@ public class OpintojenSeurantajarjestelma {
        }
        
        String tuloste = "";
-       tuloste += "Kursseja yhteensä: " + kaikkienKurssienLukumaara() + ", opintopisteitä yhteensä: " + opintopisteetYhteensa();
+       tuloste += "Kursseja yhteensä: " + kaikkienKurssienLukumaara() + ", opintopisteitä yhteensä: " + opintopisteetYhteensa() + "\n\n";
        
        for (Taso taso : this.opintokokonaisuudet.keySet()) {
-           tuloste += taso + "\n\n";
+           tuloste += taso + ", yleisarvosana: " + this.opintokokonaisuudet.get(taso).yleisarvosana() + "\n\n";
            for (Kurssi kurssi : this.opintokokonaisuudet.get(taso).getKurssit()) {
                tuloste += kurssi.lyhytTuloste() + "\n";
            }
@@ -221,6 +221,26 @@ public class OpintojenSeurantajarjestelma {
        
        
        return tuloste;
+   }
+   
+   public String tulostaArvosanajakauma(List<Integer> arvosanat) {
+       Integer korkeus = 0;
+       
+       for (int i : arvosanat) {
+           if (i > korkeus) {
+               korkeus = i;
+           }
+       }
+       
+       for (int i = korkeus; i >= 0; i--) {
+           System.out.println("*" + "  " + "  " + "  " + "  " );
+       }
+       
+       String arvosanaJakauma = "";
+       
+       
+       
+       return arvosanaJakauma;
    }
     
 }

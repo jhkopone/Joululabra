@@ -41,7 +41,11 @@ public class PaaIkkuna implements Runnable {
         BorderLayout layout = new BorderLayout();
         container.setLayout(layout);
         
-        JLabel teksti = new JLabel("Kurssien tiedot tähän.");
+        JTextArea teksti = new JTextArea("Kurssien tiedot tähän.");
+        JScrollPane rullaus = new JScrollPane();
+        rullaus.add(teksti);
+        
+//      JLabel teksti = new JLabel("Kurssien tiedot tähän.");
         
         JTextField viestiKentta = new JTextField();
         viestiKentta.setEnabled(false);
@@ -51,17 +55,18 @@ public class PaaIkkuna implements Runnable {
         container.add(teksti, BorderLayout.CENTER);
     }
     
-    private JPanel luoValikko(JLabel teksti) {
-        JPanel valikko = new JPanel(new GridLayout(6, 1));
+    private JPanel luoValikko(JTextArea teksti) {
+        JPanel valikko = new JPanel(new GridLayout(7, 1));
         
         JButton tulostaOpiskelijanTiedot = new JButton("näytä opiskelijan tiedot");
         JButton naytaKurssit = new JButton("näytä kurssit");
         JButton lisaaKurssi = new JButton("lisää kurssi");
         JButton poistaKurssi = new JButton("poista kurssi");
         JButton naytaArvosanajakauma = new JButton("näytä arvosanajakauma");
-        JButton naytaKurssitLukukausittain = new JButton("näytä kurssit lukukausittain"); 
+        JButton naytaKurssitLukukausittain = new JButton("näytä kurssit lukukausittain");
+        JButton poistaOmatTiedot = new JButton("poista omat tiedot");
 
-        PaaIkkunaKuuntelija kuuntelija = new PaaIkkunaKuuntelija(this.jarjestelma, teksti, tulostaOpiskelijanTiedot, naytaKurssit,lisaaKurssi, poistaKurssi, naytaArvosanajakauma, naytaKurssitLukukausittain);
+        PaaIkkunaKuuntelija kuuntelija = new PaaIkkunaKuuntelija(this.jarjestelma, teksti, tulostaOpiskelijanTiedot, naytaKurssit,lisaaKurssi, poistaKurssi, naytaArvosanajakauma, naytaKurssitLukukausittain, poistaOmatTiedot);
         
         tulostaOpiskelijanTiedot.addActionListener(kuuntelija);
         naytaKurssit.addActionListener(kuuntelija);
@@ -69,6 +74,7 @@ public class PaaIkkuna implements Runnable {
         poistaKurssi.addActionListener(kuuntelija);
         naytaArvosanajakauma.addActionListener(kuuntelija);
         naytaKurssitLukukausittain.addActionListener(kuuntelija);
+        poistaOmatTiedot.addActionListener(kuuntelija);
 
         valikko.add(tulostaOpiskelijanTiedot);
         valikko.add(naytaKurssit);
@@ -76,6 +82,7 @@ public class PaaIkkuna implements Runnable {
         valikko.add(poistaKurssi);       
         valikko.add(naytaArvosanajakauma);
         valikko.add(naytaKurssitLukukausittain);
+        valikko.add(poistaOmatTiedot);
         
         return valikko;
     }

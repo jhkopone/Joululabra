@@ -108,7 +108,7 @@ public class KurssinLisaysIkkuna implements Runnable {
         napit.add(lisaa);
         napit.add(peruuta);
         
-        KurssinLisaysKuuntelija kuuntelija = new KurssinLisaysKuuntelija(this.jarjestelma, nimiKentta, kurssikoodiKentta, opintopisteetKentta, perus, aine, syventava, jatko, muut, kieli, tvt, erikoistumislinjaKentta, kuvausKentta, arvosanaKentta, suoritusPvmKentta, lisaa, peruuta);
+        KurssinLisaysKuuntelija kuuntelija = new KurssinLisaysKuuntelija(this.jarjestelma, nimiKentta, kurssikoodiKentta, opintopisteetKentta, perus, aine, syventava, jatko, muut, kieli, tvt, erikoistumislinjaKentta, kuvausKentta, arvosanaKentta, suoritusPvmKentta, lisaa, peruuta, this.frame);
         lisaa.addActionListener(kuuntelija);
         peruuta.addActionListener(kuuntelija);
         perus.addActionListener(kuuntelija);
