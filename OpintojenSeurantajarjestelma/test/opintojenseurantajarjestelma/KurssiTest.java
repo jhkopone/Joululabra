@@ -16,27 +16,20 @@ public class KurssiTest {
     public KurssiTest() {
     }
     
-    @BeforeClass
-    public static void setUpClass() {
-    }
-    
-    @AfterClass
-    public static void tearDownClass() {
-    }
-    
     @Before
     public void setUp() {
         kurssi = new Kurssi("OHPE", "007", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
     }
     
-    @After
-    public void tearDown() {
+    @Test
+    public void toStringToimii() {
+        assertEquals(this.kurssi.toString(), "OHPE" + ", " + "5" + " op" + " (" + "007" + ")\n"
+               + "\t" + "Java-peruskurssi" + "\n"
+               + "\t" + "arvosana: " + "5" + ", suorituspäivämäärä: " + "010101");
     }
     
     @Test
-    public void konstruktoriToimii() {
-        assertEquals(kurssi.toString(), "OHPE" + ", " + "5" + " op" + " (" + "007" + ")\n"
-               + "\t" + "Java-peruskurssi" + "\n"
-               + "\t" + "arvosana: " + "5" + ", suorituspäivämäärä: " + "010101");
+    public void lyhytTulosteToimii() {
+        assertEquals(this.kurssi.lyhytTuloste(), "OHPE (007)");
     }
 }

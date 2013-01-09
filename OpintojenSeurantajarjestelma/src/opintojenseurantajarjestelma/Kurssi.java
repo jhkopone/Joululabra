@@ -119,6 +119,6 @@ public class Kurssi implements Serializable{
  * Metodin avulla luodaan käytännöllisen pituinen yhteenveto Kurssi-olion sisältämistä tiedoista.
  */     
     public String lyhytTuloste() {
-        return this.nimi + " (" + this.kurssikoodi + ") ";
+        return this.nimi + " (" + this.kurssikoodi + ")";
     }
 }
