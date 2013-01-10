@@ -27,8 +27,8 @@ public class Opintokokonaisuus implements Serializable{
  * @return boolean arvo true jos lisääminen onnistuu, muutoin false
  */   
     public boolean lisaaKurssi (Kurssi kurssi) {
-        if (!this.kurssit.containsKey(kurssi.getKurssikoodi())) {
-            this.kurssit.put(kurssi.getKurssikoodi(), kurssi);
+        if (!this.kurssit.containsKey(kurssi.getNimi())) {
+            this.kurssit.put(kurssi.getNimi(), kurssi);
             return true;
         }
         return false;
@@ -40,9 +40,9 @@ public class Opintokokonaisuus implements Serializable{
  * @param kurssikoodi käyttäjän syöte
  * @return boolean arvo true jos poisto onnistuu, muutoin false
  */     
-    public boolean poistaKurssi(String kurssikoodi) {
-        if (this.kurssit.containsKey(kurssikoodi)) {
-            this.kurssit.remove(kurssikoodi);
+    public boolean poistaKurssi(String kurssiNimi) {
+        if (this.kurssit.containsKey(kurssiNimi)) {
+            this.kurssit.remove(kurssiNimi);
             return true;
         }
         return false;
@@ -82,7 +82,10 @@ public class Opintokokonaisuus implements Serializable{
             yleisarvosana += (kurssi.getArvosana() * kurssi.getOpintopisteet());
         }
         
-        return yleisarvosana / this.opintopisteetYhteensa();
+        if (this.opintopisteetYhteensa() != 0) {
+            return yleisarvosana / this.opintopisteetYhteensa();
+        }
+        return 0;
     }
 
 /**

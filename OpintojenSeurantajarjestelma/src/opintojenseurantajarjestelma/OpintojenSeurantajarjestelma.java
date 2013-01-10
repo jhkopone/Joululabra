@@ -104,11 +104,11 @@ public class OpintojenSeurantajarjestelma {
   * Metodi poistaa kurssin opiskelijan suorittamien kurssien joukosta
   * @param kurssikoodi poistettavan kurssin kurssikoodi
   */ 
-    public void poistaKurssi(String kurssikoodi) {
+    public void poistaKurssi(String kurssiNimi) {
         lataaOpintokokonaisuudet();
         
         for (Taso taso : this.opintokokonaisuudet.keySet()) {
-            this.opintokokonaisuudet.get(taso).poistaKurssi(kurssikoodi);
+            this.opintokokonaisuudet.get(taso).poistaKurssi(kurssiNimi);
         }
         
         tallennaOpintokokonaisuudet();
@@ -138,6 +138,21 @@ public class OpintojenSeurantajarjestelma {
         }
         
         return kurssienLukumaara;
+    }
+    
+    public String[] kurssienNimet(){
+        String[] kurssienNimet = new String[this.kaikkienKurssienLukumaara()];
+        int indeksi = 0;
+        
+        for (Opintokokonaisuus opintokokonaisuus : this.opintokokonaisuudet.values()) {
+            for (Kurssi kurssi : opintokokonaisuus.getKurssit()) {
+                kurssienNimet[indeksi] = kurssi.getNimi();
+                indeksi++;
+            }
+                
+        }
+        
+        return kurssienNimet;
     }
 /**
  * Metodi laskee opiskelijan suorittamien opintopisteiden yhteismäärän.
@@ -264,6 +279,7 @@ public class OpintojenSeurantajarjestelma {
     * @return opiskelijan kullakin arvosanalla suorittamien kurssien lukumäärä
     */
    public List<Integer> laskeArvosanajakauma() {
+       lataaOpintokokonaisuudet();
        List<Integer> arvosanaJakauma = new ArrayList<Integer>();
        
        for (int i = 0; i < 5; i++) {

@@ -110,6 +110,11 @@ public class OpintojenSeurantajarjestelmaTest {
         
     }
     
+    @Test
+    public void kurssinLisaaminenIlmanKaikkiaParametreja() {
+ 
+    }
+    
 
     
     

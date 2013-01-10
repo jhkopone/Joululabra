@@ -17,21 +17,27 @@ public class KirjautumisKuuntelija implements ActionListener{
     private JTextField salasana;
     private JButton kirjauduNappi;
     private JButton uusiKayttajaNappi;
+    private JTextField viestiKentta;
     
-    public KirjautumisKuuntelija(KayttajienHallinta jarjestelma, JTextField tunnus, JTextField salasana, JButton kirjauduNappi, JButton uusiKayttajaNappi) {
+    public KirjautumisKuuntelija(KayttajienHallinta jarjestelma, JTextField tunnus, JTextField salasana, JButton kirjauduNappi, JButton uusiKayttajaNappi, JTextField viestiKentta) {
         this.jarjestelma = jarjestelma;
         this.tunnus = tunnus;
         this.salasana = salasana;
         this.kirjauduNappi = kirjauduNappi;
         this.uusiKayttajaNappi = uusiKayttajaNappi;
+        this.viestiKentta = viestiKentta;
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == this.kirjauduNappi) {
-            this.jarjestelma.kirjauduSisaan(this.tunnus.getText(), this.salasana.getText());
+            this.viestiKentta.setText("");
+            boolean kirjautuminen = this.jarjestelma.kirjauduSisaan(this.tunnus.getText(), this.salasana.getText());
             this.tunnus.setText("");
             this.salasana.setText("");
+            if (!kirjautuminen) {
+                this.viestiKentta.setText("virheellinen tunnus tai salasana!");
+            }
         } else if (ae.getSource() == this.uusiKayttajaNappi) {
             KayttajanLisaysIkkuna kayttajanLisaaminen = new KayttajanLisaysIkkuna(this.jarjestelma);
             kayttajanLisaaminen.run();

@@ -5,6 +5,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.ButtonGroup;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JRadioButton;
@@ -22,20 +23,14 @@ public class KurssinLisaysKuuntelija implements ActionListener {
     private JTextField nimiKentta;
     private JTextField kurssikoodiKentta;
     private JTextField opintopisteetKentta;
-    private JRadioButton perus;
-    private JRadioButton aine;
-    private JRadioButton syventava;
-    private JRadioButton jatko;
-    private JRadioButton muut;
-    private JRadioButton kieli;
-    private JRadioButton tvt;
+    private JComboBox tasoValitsin;
     private JTextField erikoistumislinjaKentta;
     private JTextField kuvausKentta;
-    private JTextField arvosanaKentta;
     private JTextField suoritusPvmKentta;
     private JButton lisaa;
     private JButton peruuta;
     private JFrame frame;
+    private JComboBox arvosanatValitsin;
     
     private Taso taso;
     
@@ -44,43 +39,32 @@ public class KurssinLisaysKuuntelija implements ActionListener {
     JTextField nimiKentta, 
     JTextField kurssikoodiKentta, 
     JTextField opintopisteetKentta,
-    JRadioButton perus,
-    JRadioButton aine,
-    JRadioButton syventava,
-    JRadioButton jatko,
-    JRadioButton muut,
-    JRadioButton kieli,
-    JRadioButton tvt,
+    JComboBox tasoValitsin,
     JTextField erikoistumislinjaKentta,
     JTextField kuvausKentta,
-    JTextField arvosanaKentta,
     JTextField suoritusPvmKentta,
     JButton lisaa,
     JButton peruuta,
-    JFrame frame) {
+    JFrame frame,
+    JComboBox arvosanatValitsin) {
         this.jarjestelma = jarjestelma;
         this.nimiKentta = nimiKentta;
         this.kurssikoodiKentta = kurssikoodiKentta;
         this.opintopisteetKentta = opintopisteetKentta;
-        this.perus = perus;
-        this.aine = aine;
-        this.syventava = syventava;
-        this.jatko = jatko;
-        this.muut = muut;
-        this.kieli = kieli;
-        this.tvt = tvt;
+        this.tasoValitsin = tasoValitsin;
         this.erikoistumislinjaKentta = erikoistumislinjaKentta;
         this.kuvausKentta = kuvausKentta;
-        this.arvosanaKentta = arvosanaKentta;
         this.suoritusPvmKentta = suoritusPvmKentta;
         this.lisaa = lisaa;
         this.peruuta = peruuta;
         this.frame = frame;
+        this.arvosanatValitsin = arvosanatValitsin;
     }
 
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == this.lisaa) {
+            this.taso = (Taso)this.tasoValitsin.getSelectedItem();
             this.jarjestelma.lisaaKurssi(
                 this.nimiKentta.getText(),
                 this.kurssikoodiKentta.getText(),
@@ -88,25 +72,11 @@ public class KurssinLisaysKuuntelija implements ActionListener {
                 this.taso,
                 this.erikoistumislinjaKentta.getText(),
                 this.kuvausKentta.getText(),
-                Integer.parseInt(this.arvosanaKentta.getText()), 
+                Integer.parseInt(this.arvosanatValitsin.getSelectedItem().toString()), 
                 this.suoritusPvmKentta.getText()
              );
         } else if (ae.getSource() == this.peruuta) {
             this.frame.dispose();
-        } else if (ae.getSource() == this.perus) {
-            this.taso = Taso.PERUSOPINNOT;
-        } else if (ae.getSource() == this.aine) {
-            this.taso = Taso.AINEOPINNOT;
-        } else if (ae.getSource() == this.syventava) {
-            this.taso = Taso.SYVENTAVAT_OPINNOT;
-        } else if (ae.getSource() == this.jatko) {
-            this.taso = Taso.JATKO_OPINNOT;
-        } else if (ae.getSource() == this.muut) {
-            this.taso = Taso.MUUT_OPINNOT;
-        } else if (ae.getSource() == this.kieli) {
-            this.taso = Taso.KIELIOPINNOT;
-        } else if (ae.getSource() == this.tvt) {
-            this.taso = Taso.TVT_OPINNOT;
         }
         
     }

@@ -6,6 +6,7 @@ import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
@@ -22,6 +23,7 @@ public class KurssinPoistoIkkunaJaKuuntelija implements ActionListener, Runnable
     private JTextField koodiKentta;
     private JButton poistaNappi;
     private JButton peruutaNappi;
+    private JComboBox kurssiNimiValitsin;
     
     public KurssinPoistoIkkunaJaKuuntelija(OpintojenSeurantajarjestelma jarjestelma) {
         this.jarjestelma = jarjestelma;
@@ -46,13 +48,17 @@ public class KurssinPoistoIkkunaJaKuuntelija implements ActionListener, Runnable
         JLabel selite = new JLabel("Syötä kurssikoodi: ");
         koodiKentta = new JTextField();
         
+        String[] kurssienNimet = this.jarjestelma.kurssienNimet();
+        kurssiNimiValitsin =  new JComboBox(kurssienNimet);
+        kurssiNimiValitsin.setSelectedIndex(0);
+        
         poistaNappi = new JButton("Poista");
         peruutaNappi = new JButton("Peruuta");
         poistaNappi.addActionListener(this);
         peruutaNappi.addActionListener(this);
         
         container.add(selite);
-        container.add(koodiKentta);
+        container.add(kurssiNimiValitsin);
         container.add(poistaNappi);
         container.add(peruutaNappi);
     }
@@ -60,7 +66,9 @@ public class KurssinPoistoIkkunaJaKuuntelija implements ActionListener, Runnable
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == this.poistaNappi) {
-            this.jarjestelma.poistaKurssi(koodiKentta.getText());
+            String valinta = (String)kurssiNimiValitsin.getSelectedItem();
+            this.jarjestelma.poistaKurssi(valinta);
+            this.frame.dispose();
         } else if (ae.getSource() == this.peruutaNappi) {
             this.frame.dispose();
         }

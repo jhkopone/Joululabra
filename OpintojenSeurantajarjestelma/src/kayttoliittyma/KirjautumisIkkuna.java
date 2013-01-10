@@ -46,12 +46,12 @@ public class KirjautumisIkkuna implements Runnable{
         JLabel tunnusTeksti = new JLabel("käyttäjätunnus:");
         JTextField tunnusKentta = new JTextField();
         JLabel salasanaTeksti = new JLabel("salasana: ");
-        JTextField salasanaKentta = new JTextField();
+        JPasswordField salasanaKentta = new JPasswordField();
         
         JButton kirjauduNappi = new JButton("kirjaudu");
         JButton uusiKayttajaNappi = new JButton("uusi käyttäjä");
         
-        KirjautumisKuuntelija kuuntelija = new KirjautumisKuuntelija(this.jarjestelma, tunnusKentta, salasanaKentta, kirjauduNappi, uusiKayttajaNappi);
+        KirjautumisKuuntelija kuuntelija = new KirjautumisKuuntelija(this.jarjestelma, tunnusKentta, salasanaKentta, kirjauduNappi, uusiKayttajaNappi, viestiKentta);
         kirjauduNappi.addActionListener(kuuntelija);
         uusiKayttajaNappi.addActionListener(kuuntelija);
 

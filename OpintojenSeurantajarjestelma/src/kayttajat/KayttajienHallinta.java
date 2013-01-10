@@ -85,14 +85,16 @@ public class KayttajienHallinta {
  * @param salasana käyttäjän antama syöte
  */ 
     
-    public void kirjauduSisaan(String tunnus, String salasana) {
+    public boolean kirjauduSisaan(String tunnus, String salasana) {
         for (Opiskelija o : this.opiskelijat) {
             if (o.getTunnus().equals(tunnus) && o.getSalasana().equals(salasana)) {
                 this.jarjestelma.setOpiskelija(o);
                 PaaIkkuna paaIkkuna = new PaaIkkuna(this.jarjestelma);
                 paaIkkuna.run();
+                return true;
             }
         }
+        return false;
     }
 /**
  * Metodi kirjaa käyttäjän ulos järjestelmästä. Toteutus toistaiseksi kesken.
