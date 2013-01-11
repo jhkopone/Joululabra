@@ -20,6 +20,7 @@ public class KayttajanLisaysKuuntelija implements ActionListener {
     private JTextField aloitusPvmKentta;
     private JTextField tunnusKentta;
     private JTextField salasanaKentta;
+    private JFrame frame;
     
     private JButton lisaa;
     private JButton peruuta;
@@ -31,7 +32,8 @@ public class KayttajanLisaysKuuntelija implements ActionListener {
         JTextField opiskelijanumeroKentta,
         JTextField aloitusPvmKentta,
         JTextField tunnusKentta,
-        JTextField salasanaKentta, 
+        JTextField salasanaKentta,
+        JFrame frame,
         JButton lisaa,
         JButton peruuta) {
         
@@ -42,6 +44,7 @@ public class KayttajanLisaysKuuntelija implements ActionListener {
         this.aloitusPvmKentta = aloitusPvmKentta;
         this.tunnusKentta = tunnusKentta;
         this.salasanaKentta = salasanaKentta;
+        this.frame = frame;
         this.lisaa = lisaa;
         this.peruuta = peruuta;
     }
@@ -50,8 +53,8 @@ public class KayttajanLisaysKuuntelija implements ActionListener {
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == lisaa) {
             this.jarjestelma.lisaaKayttaja(new Opiskelija(this.etunimiKentta.getText(), this.sukunimiKentta.getText(), this.opiskelijanumeroKentta.getText(), this.aloitusPvmKentta.getText(), this.tunnusKentta.getText(), this.salasanaKentta.getText()));
-            this.etunimiKentta.setText("");
-            this.sukunimiKentta.setText("");
+            this.jarjestelma.kirjauduSisaan(this.tunnusKentta.getText(), this.salasanaKentta.getText());
+            this.frame.dispose();
         } else if (ae.getSource() == peruuta) {
             
         }

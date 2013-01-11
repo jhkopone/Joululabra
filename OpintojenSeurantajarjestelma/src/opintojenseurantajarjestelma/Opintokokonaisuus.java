@@ -8,7 +8,13 @@ import java.util.*;
  * @author jhkopone
  */
 public class Opintokokonaisuus implements Serializable{
+/**
+ * Opintokokonaisuuden taso
+ */      
     private Taso nimi;
+/**
+ * Opintokonaisuuteen sisältyvät kurssit
+ */      
     private Map<String, Kurssi> kurssit;
 
 /**
@@ -35,9 +41,9 @@ public class Opintokokonaisuus implements Serializable{
     }
 
 /**
- * Metodi poistaa järjestelmästä parametrinä saamaansa kurssikoodia vastaavan
+ * Metodi poistaa järjestelmästä parametrinä saamaansa kurssinimeä vastaavan
  * kurssin.
- * @param kurssikoodi käyttäjän syöte
+ * @param kurssiNimi käyttäjän syöte
  * @return boolean arvo true jos poisto onnistuu, muutoin false
  */     
     public boolean poistaKurssi(String kurssiNimi) {

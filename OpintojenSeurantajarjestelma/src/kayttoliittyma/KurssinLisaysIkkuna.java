@@ -64,7 +64,7 @@ public class KurssinLisaysIkkuna implements Runnable {
         JComboBox arvosanatValitsin = new JComboBox(arvosanat);
         arvosanatValitsin.setSelectedIndex(0);
         
-        JLabel suoritusPvmTeksti = new JLabel("suorituspäivämäärä: ");
+        JLabel suoritusPvmTeksti = new JLabel("suorituspäivämäärä (ppkkvv): ");
         JTextField suoritusPvmKentta = new JTextField("");
         
         paneeli.add(nimiTeksti);

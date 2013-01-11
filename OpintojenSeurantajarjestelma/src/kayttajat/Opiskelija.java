@@ -9,13 +9,29 @@ import java.util.*;
  * @author jhkopone
  */
 public class Opiskelija implements Serializable{
- 
+/**
+ * Opiskelijan etunimi
+ */   
     private String etunimi;
+/**
+ * Opiskelijan sukunimi
+ */      
     private String sukunimi;
+/**
+ * Opiskelijan opiskelijanumero
+ */      
     private String opiskelijanumero;
+/**
+ * Opiskelijan aloituspäivämäärä
+ */      
     private String aloituspvm;
-    
+/**
+ * Opiskelijan käyttäjätunnus järjestelmään
+ */      
     private String tunnus;
+/**
+ * Opiskelijan salasana järjestelmään
+ */      
     private String salasana;
 
 /**

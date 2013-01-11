@@ -32,7 +32,7 @@ public class KurssinPoistoIkkunaJaKuuntelija implements ActionListener, Runnable
     @Override
     public void run() {
         frame = new JFrame("Poista kurssi");
-        frame.setPreferredSize(new Dimension(300,100));
+        frame.setPreferredSize(new Dimension(450,100));
         
         frame.setDefaultCloseOperation(WindowConstants.DISPOSE_ON_CLOSE);
         

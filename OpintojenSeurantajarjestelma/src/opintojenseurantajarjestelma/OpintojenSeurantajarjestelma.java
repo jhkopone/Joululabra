@@ -9,7 +9,13 @@ import kayttajat.*;
  * @author jhkopone
  */
 public class OpintojenSeurantajarjestelma {
+/**
+ * Järjestelmää käyttävä opiskelija
+ */      
     private Opiskelija opiskelija;
+/**
+ * Järjestelmää käyttävän opiskelijan opintokokonaisuudet
+ */      
     private Map<Taso, Opintokokonaisuus> opintokokonaisuudet;
     
 /**
@@ -76,7 +82,8 @@ public class OpintojenSeurantajarjestelma {
     }
 
 /**
- * Metodi lisää opiskelijan suorittamiin kursseihin uuden kurssin.
+ * Metodi luo ja lisää opiskelijan suorittamiin kursseihin uuden kurssin.
+ * parametrit samoja kuin Kurssi-luokan oliomuuttujat
  * @param nimi
  * @param kurssikoodi
  * @param opintopisteet
@@ -139,8 +146,18 @@ public class OpintojenSeurantajarjestelma {
         
         return kurssienLukumaara;
     }
-    
+/**
+ * Metodi kurssienNimet() palauttaa opiskelijan järjestelmään tallentamien
+ * kurssien nimet merkkijonotaulukkona
+ * @return kaikkien kurssien nimet merkkijonotaulukkona
+ */    
     public String[] kurssienNimet(){
+        if (this.kaikkienKurssienLukumaara() == 0) {
+            String[] eiYhtaanKurssia = new String[1];
+            eiYhtaanKurssia[0] = "ei suoritettuja kursseja!";
+            return eiYhtaanKurssia;
+        }
+        
         String[] kurssienNimet = new String[this.kaikkienKurssienLukumaara()];
         int indeksi = 0;
         
@@ -321,6 +338,17 @@ public class OpintojenSeurantajarjestelma {
        return arvosanajakaumaTahtina;
        
    }
+   /**
+    * Metodi poistaKaikkiKurssit() poistaa järjestelmästä kaikki kirjautuneena olevan 
+    * opiskelijan kurssit. Metodi kutsuu metodia alustaTiedosto, joka tallentaa opiskelijan
+    * tunnuksella yksilöityyn tiedostoon tyhjän hajautustaulun
+    */
+   public void poistaKaikkiKurssit() {
+       this.opintokokonaisuudet = new HashMap<Taso, Opintokokonaisuus>();
+       alustaTiedosto(this.opiskelija.getTunnus());
+   }
+           
+           
    /**
     * Metodi alustaa parametrina saamansa nimisen tiedoston tallentamalla sinne tyhjän Map-olion
     * @param tiedosto alustettavan tiedoston nimi

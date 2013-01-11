@@ -8,9 +8,19 @@ import opintojenseurantajarjestelma.Tiedostonkasittelija;
  * uuden opiskelijan lisääminen, opiskelijan poisto sekä kirjautuminen.
  */   
 public class KayttajienHallinta {
+/**
+ * Järjestelmään käyttäjätunnuksen luoneet opiskelijat
+ */      
     private List<Opiskelija> opiskelijat;
+/**
+ * OpintojenSeurantajärjestelmä, jonka käyttöoikeuksia valvotaan
+ */      
     private OpintojenSeurantajarjestelma jarjestelma;
+/**
+ * Tiedosto, johon käyttäjien tunnistautumistiedot tallennetaan
+ */      
     private String tiedosto;
+    
 /**
  * KayttajienHallinta-luokan konstruktori
  * @param jarjestelma OpintojenSeurantajarjestelma -luokan ilmentymä
@@ -20,6 +30,10 @@ public class KayttajienHallinta {
         this.jarjestelma = jarjestelma;
         this.tiedosto = tiedosto;
         lataaKayttajat();
+    }
+    
+    public OpintojenSeurantajarjestelma getJarjestelma() {
+        return this.jarjestelma;
     }
 
 /**
@@ -89,18 +103,9 @@ public class KayttajienHallinta {
         for (Opiskelija o : this.opiskelijat) {
             if (o.getTunnus().equals(tunnus) && o.getSalasana().equals(salasana)) {
                 this.jarjestelma.setOpiskelija(o);
-                PaaIkkuna paaIkkuna = new PaaIkkuna(this.jarjestelma);
-                paaIkkuna.run();
                 return true;
             }
         }
-        return false;
-    }
-/**
- * Metodi kirjaa käyttäjän ulos järjestelmästä. Toteutus toistaiseksi kesken.
- * @return 
- */   
-    public boolean kirjauduUlos() {
         return false;
     }
     

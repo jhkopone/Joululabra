@@ -4,8 +4,10 @@ package kayttoliittyma;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
+import kayttajat.KayttajienHallinta;
 import opintojenseurantajarjestelma.OpintojenSeurantajarjestelma;
 /**
  * Luokka toteuttaa PaaIkkuna-luokan toiminnallisuuden.
@@ -13,25 +15,29 @@ import opintojenseurantajarjestelma.OpintojenSeurantajarjestelma;
  */
 public class PaaIkkunaKuuntelija implements ActionListener {
     private OpintojenSeurantajarjestelma jarjestelma;
+    private KayttajienHallinta hallintaJarjestelma;
+    private JFrame frame;
     private JTextArea tekstikentta;
     private JButton tulostaOpiskelijanTiedot;
     private JButton naytaKurssit;
     private JButton lisaaKurssi;
     private JButton poistaKurssi;
     private JButton naytaArvosanajakauma;
-    private JButton naytaKurssitLukukausittain;
+    private JButton suljeOhjelma;
     private JButton poistaOmatTiedot;
          
     
-    public PaaIkkunaKuuntelija(OpintojenSeurantajarjestelma jarjestelma, JTextArea tekstikentta, JButton tulostaOpiskelijanTiedot, JButton naytaKurssit, JButton lisaaKurssi, JButton poistaKurssi, JButton naytaArvosanajakauma, JButton naytaKurssitLukukausittain, JButton poistaOmatTiedot) {
+    public PaaIkkunaKuuntelija(OpintojenSeurantajarjestelma jarjestelma, KayttajienHallinta hallintaJarjestelma, JFrame frame, JTextArea tekstikentta, JButton tulostaOpiskelijanTiedot, JButton naytaKurssit, JButton lisaaKurssi, JButton poistaKurssi, JButton naytaArvosanajakauma, JButton suljeOhjelma, JButton poistaOmatTiedot) {
         this.jarjestelma = jarjestelma;
+        this.hallintaJarjestelma = hallintaJarjestelma;
+        this.frame = frame;
         this.tekstikentta = tekstikentta;
         this.tulostaOpiskelijanTiedot = tulostaOpiskelijanTiedot;
         this.naytaKurssit = naytaKurssit;
         this.lisaaKurssi = lisaaKurssi;
         this.poistaKurssi = poistaKurssi;
         this.naytaArvosanajakauma = naytaArvosanajakauma;
-        this.naytaKurssitLukukausittain = naytaKurssitLukukausittain;
+        this.suljeOhjelma = suljeOhjelma;
         this.poistaOmatTiedot = poistaOmatTiedot;
     }
 
@@ -52,6 +58,8 @@ public class PaaIkkunaKuuntelija implements ActionListener {
             kayttajanPoisto.run();
         } else if (ae.getSource() == this.naytaArvosanajakauma) {
             this.tekstikentta.setText(this.jarjestelma.tulostaArvosanajakaumaTahtina());
+        } else if (ae.getSource() == this.suljeOhjelma) {
+            this.frame.dispose();
         }
         
     }

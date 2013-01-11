@@ -51,7 +51,7 @@ public class KirjautumisIkkuna implements Runnable{
         JButton kirjauduNappi = new JButton("kirjaudu");
         JButton uusiKayttajaNappi = new JButton("uusi käyttäjä");
         
-        KirjautumisKuuntelija kuuntelija = new KirjautumisKuuntelija(this.jarjestelma, tunnusKentta, salasanaKentta, kirjauduNappi, uusiKayttajaNappi, viestiKentta);
+        KirjautumisKuuntelija kuuntelija = new KirjautumisKuuntelija(this.jarjestelma, tunnusKentta, salasanaKentta, kirjauduNappi, uusiKayttajaNappi, viestiKentta, this.frame);
         kirjauduNappi.addActionListener(kuuntelija);
         uusiKayttajaNappi.addActionListener(kuuntelija);
 

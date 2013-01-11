@@ -18,6 +18,7 @@ public class OpintojenSeurantajarjestelmaTest {
     @Before
     public void setUp() {
         jarjestelma = new OpintojenSeurantajarjestelma(new Opiskelija("Juha", "Koponen", "007", "010101", "Juhis", "Juhis"));
+        this.jarjestelma.alustaTiedosto("Juhis");
     }
     
     @Test
@@ -51,7 +52,7 @@ public class OpintojenSeurantajarjestelmaTest {
     @Test
     public void kurssinPoistaminenToimiiYhdellaKurssilla() {
         jarjestelma.lisaaKurssi("OHPE", "007", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
-        jarjestelma.poistaKurssi("007");
+        jarjestelma.poistaKurssi("OHPE");
         
         assertEquals(jarjestelma.kaikkienKurssienLukumaara(), 0);
         this.jarjestelma.alustaTiedosto("Juhis");
@@ -63,7 +64,7 @@ public class OpintojenSeurantajarjestelmaTest {
         jarjestelma.lisaaKurssi("OHPE2", "008", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
         jarjestelma.lisaaKurssi("OHPE3", "009", 5, Taso.PERUSOPINNOT, "Ohjelmistojärjestelmät", "Java-peruskurssi", 5, "010101");
         
-        jarjestelma.poistaKurssi("008");
+        jarjestelma.poistaKurssi("OHPE2");
         
         assertEquals(jarjestelma.kaikkienKurssienLukumaara(), 2);
         this.jarjestelma.alustaTiedosto("Juhis");

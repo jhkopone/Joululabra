@@ -18,14 +18,16 @@ public class KirjautumisKuuntelija implements ActionListener{
     private JButton kirjauduNappi;
     private JButton uusiKayttajaNappi;
     private JTextField viestiKentta;
+    private JFrame frame;
     
-    public KirjautumisKuuntelija(KayttajienHallinta jarjestelma, JTextField tunnus, JTextField salasana, JButton kirjauduNappi, JButton uusiKayttajaNappi, JTextField viestiKentta) {
+    public KirjautumisKuuntelija(KayttajienHallinta jarjestelma, JTextField tunnus, JTextField salasana, JButton kirjauduNappi, JButton uusiKayttajaNappi, JTextField viestiKentta, JFrame frame) {
         this.jarjestelma = jarjestelma;
         this.tunnus = tunnus;
         this.salasana = salasana;
         this.kirjauduNappi = kirjauduNappi;
         this.uusiKayttajaNappi = uusiKayttajaNappi;
         this.viestiKentta = viestiKentta;
+        this.frame = frame;
     }
 
     @Override
@@ -33,11 +35,14 @@ public class KirjautumisKuuntelija implements ActionListener{
         if (ae.getSource() == this.kirjauduNappi) {
             this.viestiKentta.setText("");
             boolean kirjautuminen = this.jarjestelma.kirjauduSisaan(this.tunnus.getText(), this.salasana.getText());
+            if (kirjautuminen) {
+                PaaIkkuna paaIkkuna = new PaaIkkuna(this.jarjestelma.getJarjestelma(), this.jarjestelma);
+                paaIkkuna.run();
+                this.frame.dispose();
+            }
             this.tunnus.setText("");
             this.salasana.setText("");
-            if (!kirjautuminen) {
-                this.viestiKentta.setText("virheellinen tunnus tai salasana!");
-            }
+            this.viestiKentta.setText("virheellinen tunnus tai salasana!");
         } else if (ae.getSource() == this.uusiKayttajaNappi) {
             KayttajanLisaysIkkuna kayttajanLisaaminen = new KayttajanLisaysIkkuna(this.jarjestelma);
             kayttajanLisaaminen.run();

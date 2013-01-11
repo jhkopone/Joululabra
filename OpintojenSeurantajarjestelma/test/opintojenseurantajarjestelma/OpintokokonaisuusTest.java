@@ -56,7 +56,7 @@ public class OpintokokonaisuusTest {
         opintokokonaisuus.lisaaKurssi(kurssi1);
         opintokokonaisuus.lisaaKurssi(kurssi2);
         
-        opintokokonaisuus.poistaKurssi(kurssi1.getKurssikoodi());
+        opintokokonaisuus.poistaKurssi(kurssi1.getNimi());
         
         assertEquals(opintokokonaisuus.kurssienLukumaara(), 1);
     }
@@ -67,8 +67,8 @@ public class OpintokokonaisuusTest {
         opintokokonaisuus.lisaaKurssi(kurssi2);
         opintokokonaisuus.lisaaKurssi(kurssi3);
         
-        opintokokonaisuus.poistaKurssi(kurssi1.getKurssikoodi());
-        opintokokonaisuus.poistaKurssi(kurssi2.getKurssikoodi());
+        opintokokonaisuus.poistaKurssi(kurssi1.getNimi());
+        opintokokonaisuus.poistaKurssi(kurssi2.getNimi());
         
         assertEquals(opintokokonaisuus.kurssienLukumaara(), 1);
     }

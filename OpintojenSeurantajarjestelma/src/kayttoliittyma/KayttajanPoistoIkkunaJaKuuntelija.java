@@ -64,7 +64,8 @@ public class KayttajanPoistoIkkunaJaKuuntelija implements ActionListener, Runnab
     @Override
     public void actionPerformed(ActionEvent ae) {
         if (ae.getSource() == this.poistaNappi) {
-            
+            this.jarjestelma.poistaKaikkiKurssit();
+            this.frame.dispose();
         } else if (ae.getSource() == this.peruutaNappi) {
             this.frame.dispose();
         }

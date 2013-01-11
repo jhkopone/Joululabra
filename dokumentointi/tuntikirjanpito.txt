@@ -2,7 +2,7 @@
 Tuntikirjanpito
 
 14.12.2012
-GitHub reposition luominen 		1h
+GitHub reposition luominen 	1h
 Aihemäärittelyn kirjoittaminen	0.5h
 Tuntikirjanpidon aloittaminen	0.5h
 
@@ -25,7 +25,7 @@ luokkakaavion laadinta 0.5h
 
 6.1.2012
 ohjelmointi 4.0h
-	käyttöliitymän rakentaminen 2.0h
+käyttöliitymän rakentaminen 2.0h
 
 7.1.2012
 ohjelmointi 7.0h (graafisen käyttöliittymän rakentamista)
@@ -36,9 +36,13 @@ ohjelmointi 5.0h
 testien kirjoittaminen 2.0h
 
 9.1.2012
-ohjelmointi 4.5h (käyttöliittymä)
+ohjelmointi 4.5h (graafisen käyttöliittymän rakentamista)
 testien kirjoittaminen 2.0h
 
 10.1.2012
 ohjelmointi 3.0h
+
+11.1.2012
+ohjelmointi 1.5h
+dokumentoinnin viimeistely 3.0h
 

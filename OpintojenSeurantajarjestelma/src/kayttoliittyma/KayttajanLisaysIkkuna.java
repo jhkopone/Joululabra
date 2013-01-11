@@ -52,7 +52,7 @@ public class KayttajanLisaysIkkuna implements Runnable {
         JLabel opiskelijanumeroTeksti = new JLabel("opiskelijanumero: ");
         JTextField opiskelijanumeroKentta = new JTextField();
         
-        JLabel aloitusPvmTeksti = new JLabel("aloituspäivämäärä: ");
+        JLabel aloitusPvmTeksti = new JLabel("aloituspäivämäärä (ppkkvv): ");
         JTextField aloitusPvmKentta = new JTextField();
         
         JLabel tunnusTeksti = new JLabel("käyttäjätunnus: ");
@@ -82,7 +82,7 @@ public class KayttajanLisaysIkkuna implements Runnable {
         napit.add(lisaa);
         napit.add(peruuta);
         
-        KayttajanLisaysKuuntelija kuuntelija = new KayttajanLisaysKuuntelija(this.jarjestelma, etunimiKentta, sukunimiKentta, opiskelijanumeroKentta, aloitusPvmKentta, tunnusKentta, salasanaKentta, lisaa, peruuta);
+        KayttajanLisaysKuuntelija kuuntelija = new KayttajanLisaysKuuntelija(this.jarjestelma, etunimiKentta, sukunimiKentta, opiskelijanumeroKentta, aloitusPvmKentta, tunnusKentta, salasanaKentta, this.frame, lisaa, peruuta);
         lisaa.addActionListener(kuuntelija);
         peruuta.addActionListener(kuuntelija);
         

@@ -7,13 +7,37 @@ import java.util.*;
  * @author jhkopone
  */
 public class Kurssi implements Serializable{
+/**
+ * Kurssin nimi
+ */    
     private String nimi;
+/**
+ * Kurssin kurssikoodi
+ */      
     private String kurssikoodi;
+/**
+ * Kurssin opintopisteet
+ */      
     private Integer opintopisteet;
+/**
+ * Kurssin taso
+ */      
     private Taso taso;
+ /**
+ * Erikoistumislinja, johon kurssi kuuluu
+ */  
     private String erikoistumislinja;
+/**
+ * Kurssin tekstimuotoinen kuvaus
+ */      
     private String kuvaus;
+/**
+ * Kurssin arvosana
+ */      
     private Integer arvosana;
+/**
+ * Kurssin suorituspäivämäärä
+ */      
     private String suoritusPvm;
     
  /**
@@ -111,7 +135,10 @@ public class Kurssi implements Serializable{
     public String getSuoritusPvm() {
         return suoritusPvm;
     }
-    
+/**
+ * Kurssi-luokan toString()-metodi
+ * @return 
+ */
     @Override
     public String toString() {
         return this.nimi + ", " + this.opintopisteet + " op" + " (" + this.kurssikoodi + ")\n"
